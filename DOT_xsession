@@ -1,0 +1,16 @@
+#DESKTOP_IMAGE=~/Images/cs_havana0000-br.png
+#DESKTOP_IMAGE=~/Images/cs_havana0000.bmp
+DESKTOP_IMAGE=~/Images/circuitbreaker.jpg
+
+DESKTOP_SIZE=1024x768
+
+xmodmap /home/tom/Config/Desktop/xmodmaps/dvorak /home/tom/Config/Desktop/xmodmaps/caps
+~/bin/wrap/rxvt &
+
+if [ -r "$DESKTOP_IMAGE" ]; then
+	nice -n 19 display -geometry $DESKTOP_SIZE -window root $DESKTOP_IMAGE &
+else
+	nice -n 19 xsetroot -solid '#356390' &
+fi
+
+sawfish
