@@ -4,7 +4,7 @@ DESKTOP_IMAGE=~/Images/circuitbreaker.jpg
 
 DESKTOP_SIZE=1024x768
 
-xmodmap /home/tom/Config/Desktop/xmodmaps/dvorak /home/tom/Config/Desktop/xmodmaps/caps
+xmodmap /home/tom/Config/Desktop/xmodmaps/dvorak /home/tom/Config/Desktop/xmodmaps/caps &
 ~/bin/wrap/rxvt &
 
 if [ -r "$DESKTOP_IMAGE" ]; then
