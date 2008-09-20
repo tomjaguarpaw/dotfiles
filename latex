@@ -1,0 +1,7 @@
+(defun my-latex-mode-hook ()
+        (reftex-mode)
+        (auto-fill-mode "yes")
+	(font-lock-mode)
+)
+
+(add-hook 'latex-mode-hook 'my-latex-mode-hook)
