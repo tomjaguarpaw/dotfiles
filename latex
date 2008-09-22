@@ -4,4 +4,4 @@
 	(font-lock-mode)
 )
 
-(add-hook 'latex-mode-hook 'my-latex-mode-hook)
+(add-hook 'LaTeX-mode-hook 'my-latex-mode-hook)
