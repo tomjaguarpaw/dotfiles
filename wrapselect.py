@@ -1,0 +1,13 @@
+import os, sys
+
+wrap_dir = '/home/tom/Config/Desktop/wrap'
+
+d = {'todo': '%s/rxvt -cr red -e /home/tom/bin/shortcut/todo',
+     'fetchmail': '%s/fetchmail',
+     'mutt': 'EDITOR=jmacs xterm -bg black -fg grey -geometry 104x37 -e %s/mutt',
+     'rxvt': '%s/rxvt',
+     'rxvt-screen': '%s/rxvt-screen'
+     }
+
+for command in sys.argv[1:]:
+	os.system(d[command] % wrap_dir)
