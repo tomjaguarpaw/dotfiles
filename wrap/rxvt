@@ -1,3 +1,10 @@
 #!/bin/sh
 
-exec rxvt -bg black -fg grey -geometry 87x22 $@
+GEOM=87x22
+
+if [ $HOSTNAME = maxwell ]; then
+	echo Host is maxwell
+	GEOM=68x16
+fi
+
+exec rxvt -bg black -fg grey -geometry $GEOM $@
