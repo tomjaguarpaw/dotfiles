@@ -19,5 +19,5 @@ else
 	nice -n 19 xsetroot -solid '#356390' &
 fi
 
-xset r on
+xset r rate 400
 sawfish
