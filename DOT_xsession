@@ -11,7 +11,7 @@ setxkbmap dvorak
 xmodmap /home/tom/Config/Desktop/xmodmaps/caps &
 #xmodmap /home/tom/Config/Desktop/xmodmaps/dvorak /home/tom/Config/Desktop/xmodmaps/caps &
 
-~/bin/wrap/rxvt &
+python ~/Config/Desktop/wrapselect.py rxvt &
 
 if [ -r "$DESKTOP_IMAGE" ]; then
 	nice -n 19 feh --bg-scale $DESKTOP_IMAGE
