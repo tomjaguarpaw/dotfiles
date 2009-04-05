@@ -3,10 +3,10 @@
 cd ~/Mutt-Mail/
 
 if [ $# -eq 0 ]; then
-	mutt -Z
-	if [ $? = 1 ]; then
+#	mutt -Z
+#	if [ $? = 1 ]; then
    		TMPDIR=/home/tom/gazelle/tmp mutt -f =inbox
-	fi
+#	fi
 else
 	mutt "$@"
 fi
