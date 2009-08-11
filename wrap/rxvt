@@ -7,4 +7,4 @@ if [ $HOSTNAME = maxwell ]; then
 	GEOM=68x16
 fi
 
-exec rxvt -bg black -fg grey -geometry $GEOM $@
+exec rxvt -bg midnightblue -fg yellow -geometry $GEOM $@
