@@ -3,7 +3,6 @@
 GEOM=87x22
 
 if [ $HOSTNAME = maxwell ]; then
-	echo Host is maxwell
 	GEOM=68x16
 fi
 
