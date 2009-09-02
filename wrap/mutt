@@ -5,7 +5,7 @@ cd ~/Mutt-Mail/
 if [ $# -eq 0 ]; then
 #	mutt -Z
 #	if [ $? = 1 ]; then
-   		TMPDIR=/home/tom/gazelle/tmp mutt -f =inbox
+   		TMPDIR=/home/tom/gazelle/tmp/mutt mutt -f =inbox
 #	fi
 else
 	mutt "$@"
