@@ -1,0 +1,3 @@
+cd $HOME/TODO
+jmacs TODO
+darcs rec --patch-name="Generic TODO edit"
