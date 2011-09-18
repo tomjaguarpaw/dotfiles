@@ -1,12 +1,8 @@
 #!/bin/sh
 
-GEOM=87x22
-
-if [ $HOSTNAME = maxwell ]; then
-	GEOM=68x16
-fi
-
 RXVT=rxvt-unicode
 #RXVT=rxvt
 
-exec $RXVT -fn 7x14 -bg midnightblue -fg yellow -geometry $GEOM $@
+exec $RXVT -bg midnightblue -fg yellow $@
+
+
