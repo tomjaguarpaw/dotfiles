@@ -7,11 +7,10 @@ DESKTOP_IMAGE=~/Images/circuitbreaker.jpg
 #DESKTOP_IMAGE=~/Images/teotihuacan-wall.jpg
 #DESKTOP_IMAGE=~/Images/kingfisher-graham.jpg
 
-setxkbmap dvorak
-xmodmap /home/tom/Config/Desktop/xmodmaps/caps &
-#xmodmap /home/tom/Config/Desktop/xmodmaps/dvorak /home/tom/Config/Desktop/xmodmaps/caps &
-
 python ~/Config/Desktop/wrapselect.py rxvt &
+
+setxkbmap dvorak
+xmodmap /home/tom/Config/Desktop/xmodmaps/caps
 
 if [ -r "$DESKTOP_IMAGE" ]; then
 	nice -n 19 feh --bg-scale $DESKTOP_IMAGE
@@ -20,4 +19,4 @@ else
 fi
 
 xset r rate 400
-sawfish
+xmonad
