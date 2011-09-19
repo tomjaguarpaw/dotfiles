@@ -10,7 +10,6 @@ DESKTOP_IMAGE=~/Images/circuitbreaker.jpg
 python ~/Config/Desktop/wrapselect.py rxvt &
 
 setxkbmap dvorak
-xmodmap /home/tom/Config/Desktop/xmodmaps/caps
 
 if [ -r "$DESKTOP_IMAGE" ]; then
 	nice -n 19 feh --bg-scale $DESKTOP_IMAGE
@@ -18,5 +17,10 @@ else
 	nice -n 19 xsetroot -solid '#356390' &
 fi
 
-xset r rate 400
+xset r rate 400 &
+xset mouse 0 0 &
+
+setxkbmap -option terminate:ctrl_alt_bksp & # If this setxkbmap is done after the caps xmodmap it overwrites the caps setting, don't know why
+xmodmap /home/tom/Config/Desktop/xmodmaps/caps &
+
 xmonad
