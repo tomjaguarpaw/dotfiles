@@ -3,6 +3,6 @@
 RXVT=rxvt-unicode
 #RXVT=rxvt
 
-exec $RXVT -bg midnightblue -fg yellow $@
+exec $RXVT -fn "xft:inconsolata:size=12:hintstyle=hintslight" -bg midnightblue -fg yellow $@
 
 
