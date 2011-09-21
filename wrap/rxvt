@@ -3,6 +3,15 @@
 RXVT=rxvt-unicode
 #RXVT=rxvt
 
-exec $RXVT -fn "xft:inconsolata:size=12:hintstyle=hintslight" -bg midnightblue -fg yellow $@
+HOST=`cat /etc/hostname` # I don't know why $HOST doesn't exist in the environment of XMonad
 
+case $HOST in
+maxwell)
+	SIZE=10
+;;
+*)
+	SIZE=12
+;;
+esac
 
+exec $RXVT -fn "xft:inconsolata:size=$SIZE:hintstyle=hintslight" -bg midnightblue -fg yellow $@
