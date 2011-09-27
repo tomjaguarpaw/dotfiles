@@ -7,3 +7,4 @@ main = do
                                             ,((mod1Mask .|. shiftMask, xK_q), spawn "ls") -- how do I actually remove keys?  `removeKeys` doesn't seem to work
                                             ,((mod1Mask, xK_q), spawn "ls")
                                             ]
+                           `removeKeys` [(mod1Mask, xK_w), (mod1Mask, xK_q), (mod1Mask .|. shiftMask, xK_q)]
