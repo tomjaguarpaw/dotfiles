@@ -20,7 +20,7 @@ fi
 xset r rate 400 &
 xset mouse 0 0 &
 
-setxkbmap -option terminate:ctrl_alt_bksp & # If this setxkbmap is done after the caps xmodmap it overwrites the caps setting, don't know why
-xmodmap /home/tom/Config/Desktop/xmodmaps/caps &
+setxkbmap -option terminate:ctrl_alt_bksp # If run in the background, sometimes these don't work!
+xmodmap /home/tom/Config/Desktop/xmodmaps/caps
 
 xmonad
