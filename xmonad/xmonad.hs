@@ -5,6 +5,9 @@ import XMonad.Util.Run(spawnPipe)
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageDocks
 
+wrapSelect :: String -> X ()
+wrapSelect s = spawn $ "python /home/tom/Config/Desktop/wrapselect.py " ++ s
+
 main = do
     xmproc <- spawnPipe "xmobar"
     xmonad $ defaultConfig { manageHook = manageDocks <+> manageHook defaultConfig
@@ -14,8 +17,8 @@ main = do
                                        , ppTitle = xmobarColor "green" "" . shorten 50
                                        }
                            }
-    	     		   `additionalKeys` [((0, xK_F1), spawn "python /home/tom/Config/Desktop/wrapselect.py rxvt-screen")
-                                            ,((0, xK_F2), spawn "python /home/tom/Config/Desktop/wrapselect.py todo")
+    	     		   `additionalKeys` [((0, xK_F1), wrapSelect "rxvt-screen")
+                                            ,((0, xK_F2), wrapSelect "todo")
                                             ,((mod1Mask .|. shiftMask, xK_q), spawn "ls") -- how do I actually remove keys?  `removeKeys` doesn't seem to work
                                             ,((mod1Mask, xK_q), spawn "ls")
                                             ]
