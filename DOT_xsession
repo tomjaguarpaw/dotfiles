@@ -22,5 +22,4 @@ xset mouse 0 0 &
 
 setxkbmap -option terminate:ctrl_alt_bksp # If run in the background, sometimes these don't work!
 xmodmap /home/tom/Config/Desktop/xmodmaps/caps
-
 xmonad
