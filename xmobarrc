@@ -1,0 +1,11 @@
+Config { font = "xft:Inconsolata:size=12:antialias=true"
+       , bgColor = "black"
+       , fgColor = "grey"
+       , position = Bottom
+       , lowerOnStart = True
+       , commands = [ Run StdinReader
+                    ]
+       , sepChar = "%"
+       , alignSep = "}{"
+       , template = "%StdinReader%"
+       }
