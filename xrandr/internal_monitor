@@ -1,0 +1,3 @@
+#http://www.jejik.com/articles/2008/10/setting_up_dual_monitors_system-wide_with_xrandr_on_debian_lenny/
+
+xrandr --output LVDS1 --mode 1366x768 --pos 0x0 --output VGA1 --off

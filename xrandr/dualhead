@@ -1,0 +1,1 @@
+xrandr -o normal --output VGA1 --mode 1280x1024 --output LVDS1 --below VGA1 --mode 1366x768

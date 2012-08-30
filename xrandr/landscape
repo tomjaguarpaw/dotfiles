@@ -1,0 +1,1 @@
+xrandr -o normal && xrandr --dpi 97x97
