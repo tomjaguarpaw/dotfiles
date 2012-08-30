@@ -8,6 +8,11 @@ import XMonad.Hooks.ManageDocks
 wrapSelect :: String -> X ()
 wrapSelect s = spawn $ "python /home/tom/Config/Desktop/wrapselect.py " ++ s
 
+tomppLayout "Tall" = "|||"
+tomppLayout "Mirror Tall" = "|-|"
+tomppLayout "Full" = "| |"
+tomppLayout s = s
+
 main = do
     xmproc <- spawnPipe "xmobar"
     xmonad $ defaultConfig { manageHook = manageDocks <+> manageHook defaultConfig
@@ -15,6 +20,7 @@ main = do
                            , logHook = dynamicLogWithPP xmobarPP
                                        { ppOutput = hPutStrLn xmproc
                                        , ppTitle = xmobarColor "green" "" . shorten 50
+				       , ppLayout = xmobarColor "lightblue" "" . tomppLayout
                                        }
                            }
     	     		   `additionalKeys` [((0, xK_F1), wrapSelect "rxvt-screen")
