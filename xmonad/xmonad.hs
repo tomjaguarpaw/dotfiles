@@ -22,6 +22,7 @@ main = do
                                        , ppTitle = xmobarColor "green" "" . shorten 50
 				       , ppLayout = xmobarColor "lightblue" "" . tomppLayout
                                        }
+                           , borderWidth = 2
                            }
     	     		   `additionalKeys` [((0, xK_F1), wrapSelect "rxvt-screen")
                                             ,((0, xK_F2), wrapSelect "todo")
