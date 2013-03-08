@@ -7,7 +7,8 @@ d = {'todo': 'exec sh %%s/rxvt -cr red -e sh %s/todo' % wrap_dir,
      'fetchmail': 'sh %s/fetchmail',
      'mutt': 'EDITOR=jmacs xterm -bg black -fg grey -geometry 104x24 -e %s/mutt',
      'rxvt': 'exec sh %s/rxvt',
-     'rxvt-screen': 'exec sh %s/rxvt-screen'
+     'rxvt-screen': 'exec sh %s/rxvt-screen',
+     'rxvt-tmux': 'exec sh %s/rxvt-tmux'
      }
 
 for command in sys.argv[1:]:

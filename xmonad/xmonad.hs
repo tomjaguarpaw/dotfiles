@@ -24,7 +24,7 @@ main = do
                                        }
                            , borderWidth = 2
                            }
-    	     		   `additionalKeys` [((0, xK_F1), wrapSelect "rxvt-screen")
+    	     		   `additionalKeys` [((0, xK_F1), wrapSelect "rxvt-tmux")
                                             ,((0, xK_F2), wrapSelect "todo")
                                             ,((mod1Mask .|. shiftMask, xK_q), spawn "ls") -- how do I actually remove keys?  `removeKeys` doesn't seem to work
                                             ,((mod1Mask, xK_q), spawn "ls")
