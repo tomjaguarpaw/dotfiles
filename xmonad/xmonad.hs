@@ -4,6 +4,7 @@ import XMonad.Util.EZConfig(additionalKeys, removeKeys)
 import XMonad.Util.Run(spawnPipe)
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageDocks
+import XMonad.Layout.NoBorders
 
 wrapSelect :: String -> X ()
 wrapSelect s = spawn $ "python /home/tom/Config/Desktop/wrapselect.py " ++ s
@@ -16,7 +17,7 @@ tomppLayout s = s
 main = do
     xmproc <- spawnPipe "xmobar"
     xmonad $ defaultConfig { manageHook = manageDocks <+> manageHook defaultConfig
-                           , layoutHook = avoidStruts  $  layoutHook defaultConfig
+                           , layoutHook = smartBorders $ avoidStruts $ layoutHook defaultConfig
                            , logHook = dynamicLogWithPP xmobarPP
                                        { ppOutput = hPutStrLn xmproc
                                        , ppTitle = xmobarColor "green" "" . shorten 100
