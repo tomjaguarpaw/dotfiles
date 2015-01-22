@@ -7,7 +7,7 @@ DESKTOP_IMAGE=~/Images/circuitbreaker.jpg
 #DESKTOP_IMAGE=~/Images/teotihuacan-wall.jpg
 #DESKTOP_IMAGE=~/Images/kingfisher-graham.jpg
 
-python ~/Config/Desktop/wrapselect.py rxvt &
+python ~/Config/Desktop/wrapselect.py rxvt-screen &
 python ~/Config/Desktop/wrapselect.py rxvt-screen &
 
 setxkbmap dvorak
