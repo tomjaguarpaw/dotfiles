@@ -1,0 +1,1 @@
+sh ~/Config/Desktop/wrap/rxvt -e ssh -o ServerAliveInterval=120 -t weber screen -x
