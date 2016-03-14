@@ -9,6 +9,10 @@
 ; http://steve.yegge.googlepages.com/effective-emacs
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
 (if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
+
+(show-paren-mode 1)
+(column-number-mode +1)
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
