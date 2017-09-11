@@ -1,3 +1,5 @@
 cd $HOME/TODO
 jmacs -autoindent --wordwrap TODO
-darcs rec --name="Generic TODO edit" TODO
+git add --patch
+git commit -m "Generic TODO edit"
+
