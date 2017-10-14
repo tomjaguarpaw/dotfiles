@@ -24,6 +24,16 @@ main = do
                                , ppLayout = xmobarColor "lightblue" "" . tomppLayout
                                }
                  , borderWidth = 2
+                 -- The handleEventHook entry seems to be needed so that
+                 -- windows don't cover xmobar on the desktop that is active
+                 -- when xmonad is (re)started.  See
+                 --
+                 -- * https://mail.haskell.org/pipermail/xmonad/2016-May/015103.html
+                 --
+                 -- * https://bbs.archlinux.org/viewtopic.php?id=206890
+                 , handleEventHook = mconcat
+                                       [ docksEventHook
+                                       , handleEventHook defaultConfig ]
                  }
               `additionalKeys` [((0, xK_F1), wrapSelect "rxvt-tmux")
                                ,((0, xK_F2), wrapSelect "todo")
