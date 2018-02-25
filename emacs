@@ -27,3 +27,5 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(default ((t (:family "Inconsolata" :foundry "unknown" :slant normal :weight normal :height 112 :width normal)))))
+
+(setq ring-bell-function 'ignore)
