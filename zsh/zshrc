@@ -1,0 +1,94 @@
+# There's a bit of latency in the startup.  It seems to be mostly compinit
+# and setting the HISTFILE (which is large!)
+
+CONFIG_DIR=$HOME/Config/dotfiles
+ZSHRC=$CONFIG_DIR/zsh/zshrc
+
+# Lines configured by zsh-newuser-install
+HISTFILE=~/.zsh_history
+HISTSIZE=100000
+SAVEHIST=100000
+setopt appendhistory nomatch
+bindkey -e
+# End of lines configured by zsh-newuser-install
+# The following lines were added by compinstall
+zstyle :compinstall filename $ZSHRC
+
+autoload -Uz compinit
+compinit
+# End of lines added by compinstall
+
+eval `dircolors $CONFIG_DIR/dircolors-data`
+alias ls='ls --color=auto'
+zstyle ':completion:*' list-colors ''
+zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
+
+setopt NO_AUTO_MENU
+WORDCHARS=${WORDCHARS:s#/#}
+
+autoload colors
+colors
+
+for color in RED GREEN YELLOW BLUE MAGENTA CYAN WHITE; do
+        eval PR_$color='%{$terminfo[bold]$fg[${(L)color}]%}'
+        eval PR_LIGHT_$color='%{$fg[${(L)color}]%}'
+        (( count = $count + 1 ))
+done
+
+PR_NO_COLOUR="%{$terminfo[sgr0]%}"
+
+HOSTHASH=`echo $HOST | md5sum -`
+HOSTHASHFIRST=${HOSTHASH:1:1}
+
+case $HOSTHASHFIRST in
+0)
+	PC=$PR_WHITE
+	;;
+1)
+	PC=$PR_GREEN
+	;;
+2)
+	PC=$PR_YELLOW
+	;;
+3)
+	PC=$PR_BLUE
+	;;
+4)
+	PC=$PR_MAGENTA
+	;;
+5)
+	PC=$PR_CYAN
+	;;
+6)
+	PC=$PR_RED
+	;;
+7)
+	PC=$PR_LIGHT_RED
+	;;
+8)
+	PC=$PR_LIGHT_GREEN
+	;;
+9)
+	PC=$PR_LIGHT_YELLOW
+	;;
+a)
+	PC=$PR_LIGHT_BLUE
+	;;
+b)
+	PC=$PR_LIGHT_MAGENTA
+	;;
+c)
+	PC=$PR_LIGHT_CYAN
+	;;
+d)
+	PC=$PR_LIGHT_WHITE
+	;;
+e)
+	PC=$PR_LIGHT_RED
+	;;
+f)
+	PC=$PR_LIGHT_GREEN
+	;;
+esac
+
+PROMPT="%n@${PC}%M${PR_NO_COLOUR}:%~%# "
