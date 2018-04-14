@@ -9,12 +9,10 @@
 (load "~/Config/Emacs/latex")
 ; (load "~/Config/Emacs/show-whitespace-mode.el")
 (load "~/Config/Emacs/whitespace.el")
-(load "~/Config/Emacs/hi2.el")
 (load "~/Config/Emacs/attrap-20180218.1243.el")
 (load "~/Config/Emacs/lcr-20180224.1243.el")
 (load "~/Config/Emacs/dante.el")
 
-(add-hook 'haskell-mode-hook 'turn-on-hi2)
 (use-package dante
   :after haskell-mode
   :commands 'dante-mode
