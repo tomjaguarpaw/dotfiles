@@ -6,6 +6,8 @@ if [ ! -r "$DOTFILES" ]; then
     echo I could not read the directory "$DOTFILES"
     echo
     echo Usage: sh setup.sh '<path to dotfiles directory>'
+    echo
+    echo NB You probably want to specify an absolute path!
     exit
 fi
 
