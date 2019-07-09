@@ -9,4 +9,4 @@ SIZE=16
 
 # It seems urxvt has problems working out the correct unicode fallback if we don't specify it
 #exec $RXVT -fn "xft:inconsolata:size=$SIZE:hintstyle=hintslight,xft:unifont" -bg midnightblue -fg yellow $@
-exec stterm -f "inconsolata:size=$SIZE:hintstyle=hintslight,xft:unifont" $@
+exec stterm -f "inconsolata:size=$SIZE:hintstyle=hintslight,xft:unifont" "$@"
