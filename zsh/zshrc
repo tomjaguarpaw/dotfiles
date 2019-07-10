@@ -3,6 +3,7 @@
 
 CONFIG_DIR=$HOME/Config/dotfiles
 ZSHRC=$CONFIG_DIR/zsh/zshrc
+export EDITOR=jmacs
 
 # Lines configured by zsh-newuser-install
 HISTFILE=~/.zsh_history
