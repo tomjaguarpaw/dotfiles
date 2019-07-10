@@ -1,0 +1,10 @@
+Requires emacs25 (for xref)
+
+Requires:
+
+dash-el
+s-el
+elpa-f
+elpa-flycheck
+elpa-use-package
+haskell-mode
