@@ -5,13 +5,15 @@
 ;; You may delete these explanatory comments.
 (package-initialize)
 
-(load "~/Config/Emacs/keybindings")
-(load "~/Config/Emacs/latex")
-; (load "~/Config/Emacs/show-whitespace-mode.el")
-(load "~/Config/Emacs/whitespace.el")
-(load "~/Config/Emacs/attrap-20180218.1243.el")
-(load "~/Config/Emacs/lcr-20180224.1243.el")
-(load "~/Config/Emacs/dante.el")
+(setq base-path "~/Config/Emacs/")
+
+(load (concat base-path "keybindings"))
+(load (concat base-path "latex"))
+; (load (concat base-path "show-whitespace-mode.el"))
+(load (concat base-path "whitespace.el"))
+(load (concat base-path "attrap-20180218.1243.el"))
+(load (concat base-path "lcr-20180224.1243.el"))
+(load (concat base-path "dante.el"))
 
 (use-package dante
   :after haskell-mode
