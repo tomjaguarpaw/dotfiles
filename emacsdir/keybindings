@@ -14,3 +14,9 @@
 (custom-set-variables
  '(load-home-init-file t t))
 (custom-set-faces)
+
+(global-set-key [(control ?x) (control ?c)]
+                (lambda
+		  ()
+		  (interactive)
+		  (message "Use M-x save-buffers-kill-terminal")))
