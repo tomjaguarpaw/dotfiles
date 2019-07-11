@@ -20,3 +20,5 @@
 		  ()
 		  (interactive)
 		  (message "Use M-x save-buffers-kill-terminal")))
+
+(setq visible-cursor nil)
