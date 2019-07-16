@@ -4,6 +4,7 @@ Requires:
 
 dash-el
 s-el
+elpa-company
 elpa-f
 elpa-flycheck
 elpa-use-package

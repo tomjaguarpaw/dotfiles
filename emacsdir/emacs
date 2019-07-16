@@ -37,50 +37,20 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(dante-repl-command-line-methods-alist
+ '(dante-methods-alist
    (quote
-    ((styx closure
-	   (t)
-	   (root)
-	   (dante-repl-by-file root
-			       (quote
-				("styx.yaml"))
-			       (quote
-				("styx" "repl" dante-target))))
-     (nix closure
-	  (t)
-	  (root)
-	  (dante-repl-by-file root
-			      (quote
-			       ("shell.nix" "default.nix"))
-			      (quote
-			       ("nix-shell" "--run"
-				(concat "cabal repl "
-					(or dante-target "")
-					" --builddir=dist/dante")))))
-     (mafia closure
-	    (t)
-	    (root)
-	    (dante-repl-by-file root
-				(quote
-				 ("mafia"))
-				(quote
-				 ("mafia" "repl" dante-target))))
-     (new-build closure
-		(t)
-		(root)
-		(if
-		    (or
-		     (directory-files root nil ".+\\.cabal$")
-		     (file-exists-p "cabal.project"))
-		    (progn
-		      (quote
-		       ("cabal" "new-repl" dante-target "--builddir=dist/dante")))))
-     (bare closure
-	   (t)
-	   (_)
-	   (quote
-	    ("cabal" "repl" dante-target "--builddir=dist/dante"))))))
+    ((bare-cabal
+      (closure
+       (t)
+       (d)
+       (directory-files d t ".cabal$"))
+      ("/opt/cabal/2.4/bin/cabal" "new-repl" dante-target "--builddir=dist/dante" "--with-ghc=/opt/ghc/8.6.3/bin/ghc"))
+     (bare-ghci
+      (closure
+       (t)
+       (_)
+       t)
+      ("ghci")))))
  '(load-home-init-file t t)
  '(whitespace-style
    (quote
