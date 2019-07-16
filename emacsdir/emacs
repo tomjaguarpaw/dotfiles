@@ -81,7 +81,10 @@
 	   (_)
 	   (quote
 	    ("cabal" "repl" dante-target "--builddir=dist/dante"))))))
- '(load-home-init-file t t))
+ '(load-home-init-file t t)
+ '(whitespace-style
+   (quote
+    (tabs spaces trailing lines-tail space-before-tab newline empty space-after-tab tab-mark))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
