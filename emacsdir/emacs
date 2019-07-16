@@ -34,6 +34,7 @@
 
 (add-hook 'haskell-mode-hook 'whitespace-mode)
 (add-hook 'lisp-mode-hook 'whitespace-mode)
+(add-hook 'lisp-mode-hook (lambda () (setq indent-tabs-mode nil)))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
