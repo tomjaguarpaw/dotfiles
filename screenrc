@@ -5,3 +5,4 @@ bind x
 bind ^x
 screen 1
 hardstatus alwayslastline "%{bw}%?%E%{= .Y}%:%{}%?[%H]%{-} [%?%-Lw%?%{wb}%n*%f %t%{bw}%?%+Lw%?]%=%{bw}"
+defflow off
