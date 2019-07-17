@@ -9,7 +9,6 @@
 (load (concat base-path "keybindings"))
 (load (concat base-path "latex"))
 ; (load (concat base-path "show-whitespace-mode.el"))
-(load (concat base-path "whitespace.el"))
 (load (concat base-path "attrap-20180218.1243.el"))
 (load (concat base-path "lcr-20180224.1243.el"))
 (load (concat base-path "dante.el"))
@@ -56,14 +55,17 @@
        t)
       ("ghci")))))
  '(load-home-init-file t t)
- '(whitespace-style
-   (quote
-    (tabs spaces trailing lines-tail space-before-tab newline empty space-after-tab tab-mark))))
+ '(whitespace-display-mappings
+       '((space-mark   ?\     [? ]) ;; use space not dot
+         (space-mark   ?\xA0  [?\u00A4]     [?_])
+         (newline-mark ?\n    [?\n])
+         (tab-mark     ?\t    [?\u00BB ?\t] [?\\ ?\t]))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:inherit nil :stipple nil :background "black" :foreground "white" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 113 :width normal :foundry "unknown" :family "Inconsolata")))))
+ '(default ((t (:inherit nil :stipple nil :background "black" :foreground "white" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 113 :width normal :foundry "unknown" :family "Inconsolata"))))
+ '(whitespace-tab ((t (:background "black" :foreground "cyan")))))
 
 (setq ring-bell-function 'ignore)
