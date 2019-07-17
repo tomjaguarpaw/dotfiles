@@ -8,7 +8,6 @@
 
 (load (concat base-path "keybindings"))
 (load (concat base-path "latex"))
-; (load (concat base-path "show-whitespace-mode.el"))
 (load (concat base-path "attrap-20180218.1243.el"))
 (load (concat base-path "lcr-20180224.1243.el"))
 (load (concat base-path "dante.el"))
