@@ -57,7 +57,7 @@
  '(load-home-init-file t t)
  '(whitespace-style
    (quote
-    (face trailing tabs spaces lines-tail newline empty tab-mark))))
+    (face trailing tabs lines-tail newline empty tab-mark))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
