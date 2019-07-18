@@ -4,7 +4,7 @@
 ;; You may delete these explanatory comments.
 (package-initialize)
 
-(setq base-path "~/Config/Emacs/")
+(setq base-path "~/Config/dotfiles/Emacs/")
 
 (load (concat base-path "keybindings"))
 (load (concat base-path "latex"))
