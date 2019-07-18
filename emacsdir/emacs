@@ -46,8 +46,8 @@
       (closure
        (t)
        (d)
-       (directory-files d t ".cabal$"))
       ("/opt/cabal/2.4/bin/cabal" "new-repl" dante-target "--builddir=dist/dante" "--with-ghc=/opt/ghc/8.6.3/bin/ghc"))
+       (directory-files d t "..cabal$"))
      (bare-ghci
       (closure
        (t)
