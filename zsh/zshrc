@@ -92,4 +92,5 @@ f)
 	;;
 esac
 
-PROMPT="%n@${PC}%M${PR_NO_COLOUR}:%~%# "
+precmd() { printf "_%.0s" {1.."$COLUMNS"}; echo }
+PROMPT="%(?..[%?] )%* ${PC}%M${PR_NO_COLOUR} %~ %# "
