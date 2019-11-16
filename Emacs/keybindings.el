@@ -21,3 +21,6 @@
 		  (message "Use M-x save-buffers-kill-terminal")))
 
 (setq visible-cursor nil)
+
+(global-set-key [(control ?c) ?/]
+		'lsp-execute-code-action)

@@ -4,6 +4,26 @@
 (load (concat base-path "keybindings.el"))
 (load (concat base-path "latex.el"))
 
+;; LSP
+(use-package flycheck
+	     :straight t
+	     :init
+	     (global-flycheck-mode t))
+(use-package yasnippet
+	     :straight t)
+(use-package lsp-mode
+	     :straight t
+	     :hook (haskell-mode . lsp)
+	     :commands lsp)
+(use-package lsp-ui
+	     :straight t
+	     :commands lsp-ui-mode)
+(use-package lsp-haskell
+	     :straight t
+	     ;; Comment/uncomment this line to see interactions between lsp client/server.
+	     ;;(setq lsp-log-io t)
+	     )
+
 ; http://steve.yegge.googlepages.com/effective-emacs
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
 (if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
@@ -34,7 +54,7 @@
   (add-hook 'haskell-mode-hook 'flycheck-mode)
   ;; OR:
   ;; (add-hook 'haskell-mode-hook 'flymake-mode)
-  (add-hook 'haskell-mode-hook 'dante-mode)
+  ;; (add-hook 'haskell-mode-hook 'dante-mode)
   ;; This has to be run after flycheck is set up (in this case
   ;; implicitly, via dante).  If one uses the suggestion of the dante
   ;; README (i.e. to put it in the dante-mode-hook then it is run
@@ -119,6 +139,12 @@
  ;; If there is more than one, they won't work right.
  '(dante-methods (quote (bare-cabal bare-ghci)))
  '(load-home-init-file t t)
+ '(lsp-haskell-server-args '("-d" "-l" "/tmp/hls.log" "+RTS" "-M4G"))
+ '(lsp-haskell-server-path "haskell-language-server-8.10.7")
+ '(lsp-prefer-flymake nil)
+ '(package-selected-packages
+   (quote
+    (diminish company yasnippet use-package lsp-ui lsp-haskell flycheck)))
  '(whitespace-style
    (quote
     (face trailing tabs lines-tail newline empty tab-mark))))
@@ -132,6 +158,7 @@
  '(fixed-pitch ((t (:family "Inconsolata"))))
  '(whitespace-empty ((t (:background "saddle brown" :foreground "firebrick"))))
  '(helm-selection ((t (:background "blue" :distant-foreground "black"))))
+ '(lsp-ui-doc-background ((t (:background "blue"))))
  '(whitespace-tab ((t (:background "black" :foreground "cyan")))))
 
 (setq ring-bell-function 'ignore)
