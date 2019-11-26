@@ -1,23 +1,23 @@
-;; Added by Package.el.  This must come before configurations of
-;; installed packages.  Don't delete this line.  If you don't want it,
-;; just comment it out by adding a semicolon to the start of the line.
-;; You may delete these explanatory comments.
-(package-initialize)
-
 (setq base-path "~/Config/dotfiles/Emacs/")
 
 (load (concat base-path "keybindings"))
 (load (concat base-path "latex"))
-(load (concat base-path "attrap-20180218.1243.el"))
-(load (concat base-path "lcr-20180224.1243.el"))
-(load (concat base-path "dante.el"))
 
-(use-package dante
-  :after haskell-mode
-  :commands 'dante-mode
-  :init
-  (add-hook 'haskell-mode-hook 'dante-mode)
-  (add-hook 'haskell-mode-hook 'flycheck-mode))
+;; Bootstrap straight.el
+;;
+;;     https://github.com/raxod502/straight.el#getting-started
+(defvar bootstrap-version)
+(let ((bootstrap-file
+       (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
+      (bootstrap-version 5))
+  (unless (file-exists-p bootstrap-file)
+    (with-current-buffer
+	(url-retrieve-synchronously
+	 "https://raw.githubusercontent.com/raxod502/straight.el/develop/install.el"
+	 'silent 'inhibit-cookies)
+      (goto-char (point-max))
+      (eval-print-last-sexp)))
+    (load bootstrap-file nil 'nomessage))
 
 ; http://steve.yegge.googlepages.com/effective-emacs
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
@@ -35,25 +35,32 @@
 (add-hook 'lisp-interaction-mode-hook 'whitespace-mode)
 (add-hook 'lisp-mode-hook (lambda () (setq indent-tabs-mode nil)))
 
+;; We use straight to get use-package.  See
+;;
+;;     https://github.com/raxod502/straight.el#integration-with-use-package
+(straight-use-package 'use-package)
+
+(use-package attrap
+  :straight t
+  )
+
+(use-package dante
+  :straight t
+  :after haskell-mode
+  :commands 'dante-mode
+  :init
+  (add-hook 'haskell-mode-hook 'flycheck-mode)
+  ;; OR:
+  ;; (add-hook 'haskell-mode-hook 'flymake-mode)
+  (add-hook 'haskell-mode-hook 'dante-mode)
+  )
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(dante-methods-alist
-   (quote
-    ((bare-cabal
-      (closure
-       (t)
-       (d)
-       (directory-files d t "..cabal$"))
-      ("/opt/cabal/2.4/bin/cabal" "new-repl" dante-target "--builddir=dist/dante" "--with-ghc=/opt/ghc/8.6.3/bin/ghc"))
-     (bare-ghci
-      (closure
-       (t)
-       (_)
-       t)
-      ("ghci")))))
+ '(dante-methods (quote (bare-cabal bare-ghci)))
  '(load-home-init-file t t)
  '(whitespace-style
    (quote
