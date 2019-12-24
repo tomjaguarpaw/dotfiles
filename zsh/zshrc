@@ -92,5 +92,7 @@ f)
 	;;
 esac
 
-precmd() { printf "_%.0s" {1.."$COLUMNS"}; echo }
+horiz_bar() { printf "_%.0s" {1.."$COLUMNS"}; echo }
+
+precmd() { horiz_bar }
 PROMPT="%(?..[%?] )%* ${PC}%M${PR_NO_COLOUR} %~ %# "
