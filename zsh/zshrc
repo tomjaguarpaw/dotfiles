@@ -92,7 +92,56 @@ f)
 	;;
 esac
 
+PROMPT_FILE=/tmp/prompt-$$
+touch $PROMPT_FILE
+
 horiz_bar() { printf "_%.0s" {1.."$COLUMNS"}; echo }
 
-precmd() { horiz_bar }
-PROMPT="%(?..[%?] )%* ${PC}%M${PR_NO_COLOUR} %~ %# "
+function git_stash_count() {
+  count=$(git stash list 2> /dev/null | wc -l | awk '{print $1}') || return
+  if [[ $count -gt 0 ]]
+  then
+    echo -n " (s${count})"
+  fi
+}
+
+function jobs_count() {
+  count=$((jobs -s) | wc -l | awk '{print $1}') || return
+  if [[ $count -gt 0 ]]
+  then
+    echo -n " (j${count})"
+  fi
+}
+
+function staging_area() {
+  git diff --cached --exit-code 2> /dev/null > /dev/null
+  dirty=$?
+  if [[ $dirty -eq 1 ]]
+  then
+    echo -n " (${PR_RED}staging area dirty${PR_NO_COLOUR})"
+  fi
+}
+
+function git_diff() {
+  git diff --exit-code 2> /dev/null > /dev/null
+  dirty=$?
+  if [[ $dirty -eq 1 ]]
+  then
+    echo -n " (d)"
+  fi
+}
+
+function make_prompt() {
+  git_stash_count
+  jobs_count
+  git_diff
+  staging_area
+}
+
+precmd() {
+  # The mv is the only thing that we need to be atomic, and it probably
+  # is atomic enough.
+  ((TEMPFILE=`tempfile`; make_prompt > $TEMPFILE; mv $TEMPFILE $PROMPT_FILE) &) > /dev/null
+  horiz_bar
+  PROMPT="%(?..[%?] )%* ${PC}%M${PR_NO_COLOUR} %~$(cat $PROMPT_FILE) %# "
+}
