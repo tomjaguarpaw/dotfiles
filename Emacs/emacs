@@ -95,6 +95,9 @@ There are two things you can do about this warning:
       ("ghci")))))
  '(load-home-init-file t t)
  '(lsp-prefer-flymake nil)
+ '(package-selected-packages
+   (quote
+    (diminish company yasnippet use-package lsp-ui lsp-haskell flycheck)))
  '(whitespace-style
    (quote
     (face trailing tabs lines-tail newline empty tab-mark))))
