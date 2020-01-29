@@ -82,3 +82,5 @@
  '(whitespace-tab ((t (:background "black" :foreground "cyan")))))
 
 (setq ring-bell-function 'ignore)
+
+(add-hook 'after-init-hook 'global-company-mode)
