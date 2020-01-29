@@ -1,7 +1,7 @@
 (setq base-path "~/Config/dotfiles/Emacs/")
 
-(load (concat base-path "keybindings"))
-(load (concat base-path "latex"))
+(load (concat base-path "keybindings.el"))
+(load (concat base-path "latex.el"))
 
 ;; Bootstrap straight.el
 ;;
