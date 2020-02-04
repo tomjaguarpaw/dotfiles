@@ -1,23 +1,8 @@
 (setq base-path "~/Config/dotfiles/Emacs/")
 
+(load (concat base-path "straight.el"))
 (load (concat base-path "keybindings.el"))
 (load (concat base-path "latex.el"))
-
-;; Bootstrap straight.el
-;;
-;;     https://github.com/raxod502/straight.el#getting-started
-(defvar bootstrap-version)
-(let ((bootstrap-file
-       (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
-      (bootstrap-version 5))
-  (unless (file-exists-p bootstrap-file)
-    (with-current-buffer
-	(url-retrieve-synchronously
-	 "https://raw.githubusercontent.com/raxod502/straight.el/develop/install.el"
-	 'silent 'inhibit-cookies)
-      (goto-char (point-max))
-      (eval-print-last-sexp)))
-    (load bootstrap-file nil 'nomessage))
 
 ; http://steve.yegge.googlepages.com/effective-emacs
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
@@ -34,11 +19,6 @@
 (add-hook 'lisp-mode-hook 'whitespace-mode)
 (add-hook 'lisp-interaction-mode-hook 'whitespace-mode)
 (add-hook 'lisp-mode-hook (lambda () (setq indent-tabs-mode nil)))
-
-;; We use straight to get use-package.  See
-;;
-;;     https://github.com/raxod502/straight.el#integration-with-use-package
-(straight-use-package 'use-package)
 
 (use-package attrap
   :straight t
