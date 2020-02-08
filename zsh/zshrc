@@ -3,7 +3,7 @@
 
 CONFIG_DIR=$HOME/Config/dotfiles
 ZSHRC=$CONFIG_DIR/zsh/zshrc
-export EDITOR=jmacs
+export EDITOR="emacsclient --tty --create-frame --alternate-editor=jmacs"
 
 # Lines configured by zsh-newuser-install
 HISTFILE=~/.zsh_history
