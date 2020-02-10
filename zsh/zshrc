@@ -106,7 +106,7 @@ function git_stash_count() {
 }
 
 function jobs_count() {
-  count=$((jobs -s) | wc -l | awk '{print $1}') || return
+  count=$((jobs) | wc -l | awk '{print $1}') || return
   if [[ $count -gt 0 ]]
   then
     echo -n " (j${count})"
