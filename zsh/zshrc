@@ -138,10 +138,18 @@ function make_prompt() {
   staging_area
 }
 
+generate_prompt() {
+  ((TEMPFILE=`tempfile`; make_prompt > $TEMPFILE; mv $TEMPFILE $PROMPT_FILE) &) > /dev/null
+}
+
+set_prompt() {
+  PROMPT="%(?..[%?] )%* ${PC}%M${PR_NO_COLOUR} %~$(cat $PROMPT_FILE) %# "
+}
+
 precmd() {
   # The mv is the only thing that we need to be atomic, and it probably
   # is atomic enough.
-  ((TEMPFILE=`tempfile`; make_prompt > $TEMPFILE; mv $TEMPFILE $PROMPT_FILE) &) > /dev/null
+  generate_prompt
   horiz_bar
-  PROMPT="%(?..[%?] )%* ${PC}%M${PR_NO_COLOUR} %~$(cat $PROMPT_FILE) %# "
+  set_prompt
 }
