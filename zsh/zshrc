@@ -165,6 +165,14 @@ function make_prompt() {
   staging_area
 }
 
+TRAPALRM() {
+  generate_prompt
+  set_prompt
+  zle reset-prompt
+}
+
+TMOUT=1
+
 generate_prompt() {
   ((TEMPFILE=`mktemp`; make_prompt > $TEMPFILE; mv $TEMPFILE $PROMPT_FILE) &) > /dev/null
 }
@@ -200,7 +208,7 @@ precmd() {
   fi
   # The mv is the only thing that we need to be atomic, and it probably
   # is atomic enough.
-  generate_prompt
+#  generate_prompt
   set_prompt
 }
 
