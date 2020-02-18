@@ -143,7 +143,7 @@ generate_prompt() {
 }
 
 set_prompt() {
-  PROMPT="%(?..[%?] )%* ${PC}%M${PR_NO_COLOUR} %~$(cat $PROMPT_FILE) %# "
+  PROMPT="[P$$] %(?..[E%?] )%* ${PC}%M${PR_NO_COLOUR} %~$(cat $PROMPT_FILE) %# "
 }
 
 precmd() {
