@@ -33,6 +33,13 @@
   ;; OR:
   ;; (add-hook 'haskell-mode-hook 'flymake-mode)
   (add-hook 'haskell-mode-hook 'dante-mode)
+  ;; This has to be run after flycheck is set up (in this case
+  ;; implicitly, via dante).  If one uses the suggestion of the dante
+  ;; README (i.e. to put it in the dante-mode-hook then it is run
+  ;; every time dante-mode is enabled, and haskell-dante's next
+  ;; checkers ends up containing haskell-hlint many times!
+  :config
+  (flycheck-add-next-checker 'haskell-dante '(warning . haskell-hlint))
   )
 
 (use-package markdown-mode
