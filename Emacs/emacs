@@ -51,6 +51,7 @@
   :init
   (setq markdown-command "multimarkdown")
   (add-hook 'markdown-mode-hook 'flyspell-mode)
+  (setq ispell-dictionary "british")
   (add-hook 'markdown-mode-hook 'auto-fill-mode)
   )
 
