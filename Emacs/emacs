@@ -41,7 +41,7 @@
   ;; every time dante-mode is enabled, and haskell-dante's next
   ;; checkers ends up containing haskell-hlint many times!
   :config
-  (flycheck-add-next-checker 'haskell-dante '(warning . haskell-hlint))
+  (flycheck-add-next-checker 'haskell-dante '(info . haskell-hlint))
   )
 
 (use-package markdown-mode
