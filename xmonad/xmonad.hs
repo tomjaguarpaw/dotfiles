@@ -33,7 +33,7 @@ main = do
                  -- * https://bbs.archlinux.org/viewtopic.php?id=206890
                  , handleEventHook = mconcat
                                        [ docksEventHook
-                                       , handleEventHook defaultConfig ]
+                                       , handleEventHook def ]
                  }
               `additionalKeys` [((0, xK_F1), wrapSelect "rxvt-tmux")
                                ,((0, xK_F2), wrapSelect "todo")
