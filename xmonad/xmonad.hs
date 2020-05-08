@@ -14,6 +14,7 @@ tomppLayout "Mirror Tall" = "|-|"
 tomppLayout "Full" = "| |"
 tomppLayout s = s
 
+main :: IO ()
 main = do
     xmproc <- spawnPipe "xmobar"
     xmonad $ def { manageHook = manageDocks <+> manageHook def
