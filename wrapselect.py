@@ -12,4 +12,4 @@ d = {'todo': 'exec sh %%s/rxvt -e sh %s/todo' % wrap_dir,
      }
 
 for command in sys.argv[1:]:
-	os.system(d[command] % wrap_dir)
+	os.execlp("sh", "sh", "-c", d[command] % wrap_dir)
