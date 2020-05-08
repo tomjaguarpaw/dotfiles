@@ -1,0 +1,5 @@
+#!/bin/sh
+
+~/.ghcup/bin/cabal v2-install --installdir=.
+
+mv xmonad $1
