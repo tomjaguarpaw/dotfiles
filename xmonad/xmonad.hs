@@ -1,3 +1,7 @@
+-- To restart
+--
+-- ~/.cabal/bin/xmonad --recompile && ~/.cabal/bin/xmonad --restart
+
 import System.IO(hPutStrLn)
 import XMonad
 import XMonad.Util.EZConfig(additionalKeys, removeKeys)
