@@ -5,6 +5,7 @@ import XMonad.Util.Run(spawnPipe)
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageDocks
 import XMonad.Layout.NoBorders
+import XMonad.StackSet (greedyView, shift)
 
 wrapSelect :: String -> X ()
 wrapSelect s = spawn $ "python /home/tom/Config/Desktop/wrapselect.py " ++ s
@@ -13,6 +14,17 @@ tomppLayout "Tall" = "|||"
 tomppLayout "Mirror Tall" = "|-|"
 tomppLayout "Full" = "| |"
 tomppLayout s = s
+
+myExtraWorkspaces :: [(KeySym, String)]
+myExtraWorkspaces = [ (xK_0, "0") ]
+
+workspaceKeys :: (b, WorkspaceId) -> [((KeyMask, b), X ())]
+workspaceKeys (key, ws) =
+  [ ((mod1Mask, key), windows (greedyView ws))
+  , ((mod1Mask .|. shiftMask, key), windows (shift ws)) ]
+
+myWorkspaces :: [String]
+myWorkspaces = workspaces def ++ map snd myExtraWorkspaces
 
 main :: IO ()
 main = do
@@ -35,10 +47,12 @@ main = do
                  , handleEventHook = mconcat
                                        [ docksEventHook
                                        , handleEventHook def ]
+                 , workspaces = myWorkspaces
                  }
-              `additionalKeys` [((0, xK_F1), wrapSelect "rxvt-tmux")
-                               ,((0, xK_F2), wrapSelect "todo")
-                               ]
+              `additionalKeys` ([((0, xK_F1), wrapSelect "rxvt-tmux")
+                                ,((0, xK_F2), wrapSelect "todo")
+                                ]
+                                ++ concatMap workspaceKeys myExtraWorkspaces)
               `removeKeys` [ (mod1Mask, xK_w)
                            , (mod1Mask, xK_q)
                            , (mod1Mask, xK_n)
