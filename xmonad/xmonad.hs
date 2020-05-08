@@ -40,6 +40,7 @@ main = do
                                ]
               `removeKeys` [ (mod1Mask, xK_w)
                            , (mod1Mask, xK_q)
+                           , (mod1Mask, xK_n)
                            , (mod1Mask .|. shiftMask, xK_q)
                            , (mod1Mask .|. shiftMask, xK_c)
                            , (mod1Mask .|. shiftMask, xK_Return)
