@@ -11,9 +11,6 @@
 
 ;; Make sure CTRL-h works in searches, too.
 (setq search-delete-char (string-to-char "\C-h"))
-(custom-set-variables
- '(load-home-init-file t t))
-(custom-set-faces)
 
 (global-set-key [(control ?x) (control ?c)]
                 (lambda
