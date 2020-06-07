@@ -16,3 +16,8 @@ ln -s $DOTFILES/screenrc ~/.screenrc
 ln -s $DOTFILES/tmux.conf ~/.tmux.conf
 ln -s $DOTFILES/zsh/zshrc ~/.zshrc
 ln -s $DOTFILES/Emacs/emacs ~/.emacs
+chmod +x $DOTFILES/xmonad/build
+mkdir -p ~/.xmonad
+ln -s $DOTFILES/xmonad/xmonad.hs ~/.xmonad/xmonad.hs
+ln -s $DOTFILES/xmonad/tom-xmonad.cabal ~/.xmonad/tom-xmonad.cabal
+ln -s $DOTFILES/xmonad/build ~/.xmonad/build
