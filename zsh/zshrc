@@ -131,9 +131,18 @@ function git_diff() {
   fi
 }
 
+function git_describe() {
+  description=$(git describe --all 2> /dev/null)
+  if [[ ! -z "$description" ]]
+  then
+    echo -n " [$description]"
+  fi
+}
+
 function make_prompt() {
   git_stash_count
   jobs_count
+  git_describe
   git_diff
   staging_area
 }
