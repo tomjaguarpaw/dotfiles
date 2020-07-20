@@ -163,7 +163,7 @@ NEWLINE=$'\n'
 # All the prompt escapes are available at
 # http://zsh.sourceforge.net/Doc/Release/Prompt-Expansion.html
 set_prompt() {
-  PROMPT="[P$$] %(?..[${PROMPT_COLOUR}E%?${PR_NO_COLOUR}] )%* ${PC}%M${PR_NO_COLOUR} %~$(cat $PROMPT_FILE) ${PROMPT_COLOUR}%#${PR_NO_COLOUR}${NEWLINE}"
+  PROMPT="${PROMPT_COLOUR}%#${PR_NO_COLOUR} %*%(?.. [${PROMPT_COLOUR}E%?${PR_NO_COLOUR}])$(cat $PROMPT_FILE) %~ [P$$] ${PC}%M${PR_NO_COLOUR}${NEWLINE}"
 }
 
 precmd() {
