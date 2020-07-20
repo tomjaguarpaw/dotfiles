@@ -95,17 +95,8 @@ esac
 PROMPT_FILE=/tmp/prompt-$$
 touch $PROMPT_FILE
 
-# I don't know why zsh outputs "%{%}", but we have to do four
-# backspaces to skip over it.
-#
-# If we want the bar to appear in preexec then we need to turn off the
-# colour otherwise the subsequent command's output gets coloured too.
-# We have to do a weird hack to overwrite the "%{%}" that otherwise
-# appears.
 horiz_bar() {
-    echo -en "$BAR_COLOUR\b\b\b\b"
-    printf "_%.0s" {1.."$[$COLUMNS-4]"}
-    echo -en "${PR_NO_COLOUR}\b\b\b\b____"
+    printf "_%.0s" {1.."$[$COLUMNS]"}
     echo
 }
 
@@ -176,10 +167,8 @@ precmd() {
   LAST_COMMAND_EXIT_CODE=$?
   if [ $LAST_COMMAND_EXIT_CODE -eq 0 ]; then
     PROMPT_COLOUR=${PR_GREEN}
-    BAR_COLOUR=${PR_LIGHT_GREEN}
   else
     PROMPT_COLOUR=${PR_RED}
-    BAR_COLOUR=${PR_RED}
   fi  
   # The mv is the only thing that we need to be atomic, and it probably
   # is atomic enough.
