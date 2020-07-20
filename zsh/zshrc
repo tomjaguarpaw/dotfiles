@@ -157,10 +157,13 @@ generate_prompt() {
   ((TEMPFILE=`tempfile`; make_prompt > $TEMPFILE; mv $TEMPFILE $PROMPT_FILE) &) > /dev/null
 }
 
+# https://superuser.com/questions/382503/how-can-i-put-a-newline-in-my-zsh-prompt-without-causing-terminal-redraw-issues/986820#986820
+NEWLINE=$'\n'
+
 # All the prompt escapes are available at
 # http://zsh.sourceforge.net/Doc/Release/Prompt-Expansion.html
 set_prompt() {
-  PROMPT="[P$$] %(?..[${PROMPT_COLOUR}E%?${PR_NO_COLOUR}] )%* ${PC}%M${PR_NO_COLOUR} %~$(cat $PROMPT_FILE) ${PROMPT_COLOUR}%#${PR_NO_COLOUR} "
+  PROMPT="[P$$] %(?..[${PROMPT_COLOUR}E%?${PR_NO_COLOUR}] )%* ${PC}%M${PR_NO_COLOUR} %~$(cat $PROMPT_FILE) ${PROMPT_COLOUR}%#${PR_NO_COLOUR}${NEWLINE}"
 }
 
 precmd() {
