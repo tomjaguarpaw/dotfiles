@@ -151,6 +151,8 @@ generate_prompt() {
   ((TEMPFILE=`tempfile`; make_prompt > $TEMPFILE; mv $TEMPFILE $PROMPT_FILE) &) > /dev/null
 }
 
+# All the prompt escapes are available at
+# http://zsh.sourceforge.net/Doc/Release/Prompt-Expansion.html
 set_prompt() {
   PROMPT="[P$$] %(?..[E%?] )%* ${PC}%M${PR_NO_COLOUR} %~$(cat $PROMPT_FILE) %# "
 }
