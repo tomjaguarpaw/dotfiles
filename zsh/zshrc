@@ -138,7 +138,7 @@ function git_diff() {
 }
 
 function git_describe() {
-  description=$(git describe --all 2> /dev/null)
+  description=$(git describe --abbrev=1 --all 2> /dev/null)
   if [[ ! -z "$description" ]]
   then
     echo -n " [$description]"
