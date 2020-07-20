@@ -160,7 +160,7 @@ generate_prompt() {
 # All the prompt escapes are available at
 # http://zsh.sourceforge.net/Doc/Release/Prompt-Expansion.html
 set_prompt() {
-  PROMPT="[P$$] %(?..[${PROMPT_COLOUR}E%?${PR_NO_COLOUR}] )%* ${PC}%M${PR_NO_COLOUR} %~$(cat $PROMPT_FILE) %# "
+  PROMPT="[P$$] %(?..[${PROMPT_COLOUR}E%?${PR_NO_COLOUR}] )%* ${PC}%M${PR_NO_COLOUR} %~$(cat $PROMPT_FILE) ${PROMPT_COLOUR}%#${PR_NO_COLOUR} "
 }
 
 precmd() {
