@@ -160,14 +160,16 @@ generate_prompt() {
 # All the prompt escapes are available at
 # http://zsh.sourceforge.net/Doc/Release/Prompt-Expansion.html
 set_prompt() {
-  PROMPT="[P$$] %(?..[E%?] )%* ${PC}%M${PR_NO_COLOUR} %~$(cat $PROMPT_FILE) %# "
+  PROMPT="[P$$] %(?..[${PROMPT_COLOUR}E%?${PR_NO_COLOUR}] )%* ${PC}%M${PR_NO_COLOUR} %~$(cat $PROMPT_FILE) %# "
 }
 
 precmd() {
   LAST_COMMAND_EXIT_CODE=$?
   if [ $LAST_COMMAND_EXIT_CODE -eq 0 ]; then
+    PROMPT_COLOUR=${PR_GREEN}
     BAR_COLOUR=${PR_LIGHT_GREEN}
   else
+    PROMPT_COLOUR=${PR_RED}
     BAR_COLOUR=${PR_RED}
   fi  
   # The mv is the only thing that we need to be atomic, and it probably
