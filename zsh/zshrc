@@ -95,7 +95,13 @@ esac
 PROMPT_FILE=/tmp/prompt-$$
 touch $PROMPT_FILE
 
-horiz_bar() { printf "_%.0s" {1.."$COLUMNS"}; echo }
+# I don't know why zsh outputs "%{%}", but we have to do four
+# backspaces to skip over it.
+horiz_bar() {
+    echo -en "$BAR_COLOUR\b\b\b\b"
+    printf "_%.0s" {1.."$COLUMNS"}
+    echo
+}
 
 function git_stash_count() {
   count=$(git stash list 2> /dev/null | wc -l | awk '{print $1}') || return
@@ -158,6 +164,12 @@ set_prompt() {
 }
 
 precmd() {
+  LAST_COMMAND_EXIT_CODE=$?
+  if [ $LAST_COMMAND_EXIT_CODE -eq 0 ]; then
+    BAR_COLOUR=${PR_LIGHT_GREEN}
+  else
+    BAR_COLOUR=${PR_RED}
+  fi  
   # The mv is the only thing that we need to be atomic, and it probably
   # is atomic enough.
   generate_prompt
