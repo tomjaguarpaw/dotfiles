@@ -104,7 +104,7 @@ function git_stash_count() {
   count=$(git stash list 2> /dev/null | wc -l | awk '{print $1}') || return
   if [[ $count -gt 0 ]]
   then
-    echo -n " (s${count})"
+    echo -n " s${count}"
   fi
 }
 
@@ -112,7 +112,7 @@ function jobs_count() {
   count=$((jobs) | wc -l | awk '{print $1}') || return
   if [[ $count -gt 0 ]]
   then
-    echo -n " (j${count})"
+    echo -n " j${count}"
   fi
 }
 
@@ -121,7 +121,7 @@ function staging_area() {
   dirty=$?
   if [[ $dirty -eq 1 ]]
   then
-    echo -n " (${PR_RED}staging area dirty${PR_NO_COLOUR})"
+    echo -n " ${PR_RED}staging area dirty${PR_NO_COLOUR}"
   fi
 }
 
@@ -130,7 +130,7 @@ function git_diff() {
   dirty=$?
   if [[ $dirty -eq 1 ]]
   then
-    echo -n " (d)"
+    echo -n " d"
   fi
 }
 
@@ -138,7 +138,7 @@ function git_describe() {
   description=$(git describe --abbrev=1 --all 2> /dev/null)
   if [[ ! -z "$description" ]]
   then
-    echo -n " [$description]"
+    echo -n " $description"
   fi
 }
 
@@ -160,7 +160,7 @@ NEWLINE=$'\n'
 # All the prompt escapes are available at
 # http://zsh.sourceforge.net/Doc/Release/Prompt-Expansion.html
 set_prompt() {
-  PROMPT="${PROMPT_COLOUR}%#${PR_NO_COLOUR} %*%(?.. [${PROMPT_COLOUR}E%?${PR_NO_COLOUR}])$(cat $PROMPT_FILE) %~ [P$$] ${PC}%M${PR_NO_COLOUR}${NEWLINE}"
+  PROMPT="${PROMPT_COLOUR}%#${PR_NO_COLOUR} %*%(?.. ${PROMPT_COLOUR}E%?${PR_NO_COLOUR})$(cat $PROMPT_FILE) %~ P$$ ${PC}%M${PR_NO_COLOUR}${NEWLINE}"
 }
 
 precmd() {
