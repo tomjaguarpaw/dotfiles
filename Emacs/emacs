@@ -99,6 +99,7 @@
  '(default ((t (:inherit nil :stipple nil :background "black" :foreground "white" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 113 :width normal :foundry "unknown" :family "Inconsolata"))))
  '(company-tooltip ((t (:background "white" :foreground "black"))))
  '(fixed-pitch ((t (:family "Inconsolata"))))
+ '(whitespace-empty ((t (:background "saddle brown" :foreground "firebrick"))))
  '(whitespace-tab ((t (:background "black" :foreground "cyan")))))
 
 (setq ring-bell-function 'ignore)
