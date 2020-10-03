@@ -53,6 +53,7 @@
   (add-hook 'markdown-mode-hook 'flyspell-mode)
   (setq ispell-dictionary "british")
   (add-hook 'markdown-mode-hook 'auto-fill-mode)
+  (add-hook 'markdown-mode-hook 'whitespace-mode)
   )
 
 (use-package helm
