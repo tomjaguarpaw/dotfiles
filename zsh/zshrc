@@ -104,7 +104,8 @@ function git_stash_count() {
   count=$(git stash list 2> /dev/null | wc -l | awk '{print $1}') || return
   if [[ $count -gt 0 ]]
   then
-    echo -n " s${count}"
+    echo -n " ${PR_RED}stashes${PR_NO_COLOUR}"
+    echo -n "(${count})"
   fi
 }
 
