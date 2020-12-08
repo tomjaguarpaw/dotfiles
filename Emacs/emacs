@@ -102,6 +102,7 @@
  '(company-tooltip ((t (:background "white" :foreground "black"))))
  '(fixed-pitch ((t (:family "Inconsolata"))))
  '(whitespace-empty ((t (:background "saddle brown" :foreground "firebrick"))))
+ '(helm-selection ((t (:background "blue" :distant-foreground "black"))))
  '(whitespace-tab ((t (:background "black" :foreground "cyan")))))
 
 (setq ring-bell-function 'ignore)
