@@ -146,9 +146,18 @@ function git_describe() {
   fi
 }
 
+function git_rebasing() {
+  GIT_DIR=$(git rev-parse --show-toplevel 2> /dev/null || true)
+  if [[ -e $GIT_DIR/.git/rebase-apply ]]
+  then
+    echo -n " ${PR_RED}rebasing${PR_NO_COLOUR}"
+  fi
+}
+
 function make_prompt() {
   git_stash_count
   jobs_count
+  git_rebasing
   git_describe
   git_diff
   staging_area
