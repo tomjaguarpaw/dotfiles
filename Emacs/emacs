@@ -83,6 +83,13 @@
       helm-ff-file-name-history-use-recentf t
       helm-echo-input-in-header-line t)
 
+;; ^ matches the start of an absolute filename so we can't use that
+;; here.  I don't know how we match the start of the basename.
+;; Anyway, this isn't really the right approach.. Really mutt should
+;; launch emacs with some option that says "start mail-mode".  I don't
+;; know how to do that, so this will do for now.
+(add-to-list 'auto-mode-alist '("mutt-weber-" . mail-mode))
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
