@@ -15,7 +15,7 @@ setxkbmap dvorak
 if [ -r "$DESKTOP_IMAGE" ]; then
 	nice -n 19 feh --bg-scale $DESKTOP_IMAGE
 else
-	nice -n 19 xsetroot -solid '#356390' &
+	nice -n 19 xsetroot -solid '#000022' &
 fi
 
 xset r rate 400 &
