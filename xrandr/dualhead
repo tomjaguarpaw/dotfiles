@@ -1,3 +1,6 @@
-xrandr -o normal --output VGA1 --preferred --output LVDS1 --below VGA1 --preferred
+EXTERNAL=VGA-1
+INTERNAL=LVDS-1
+
+xrandr --output ${EXTERNAL} --rotation normal --preferred --output ${INTERNAL} --below ${EXTERNAL} --preferred
 #xrandr -o normal --output HDMI1 --preferred --output LVDS1 --below HDMI1 --preferred
 
