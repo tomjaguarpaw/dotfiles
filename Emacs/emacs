@@ -90,6 +90,8 @@
 ;; know how to do that, so this will do for now.
 (add-to-list 'auto-mode-alist '("mutt-weber-" . mail-mode))
 
+(windmove-default-keybindings)
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
