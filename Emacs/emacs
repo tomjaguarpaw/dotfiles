@@ -64,6 +64,12 @@
   (require 'helm-config)
   )
 
+(use-package undo-tree
+  :straight t
+  :init
+  (global-undo-tree-mode)
+  )
+
 ;; https://tuhdo.github.io/helm-intro.html
 
 (global-set-key (kbd "C-x C-f") 'helm-find-files)
