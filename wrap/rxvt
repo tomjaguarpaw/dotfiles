@@ -3,7 +3,6 @@
 RXVT=rxvt-unicode
 #RXVT=rxvt
 
-HOST=`cat /etc/hostname` # I don't know why $HOST doesn't exist in the environment of XMonad
 
 SIZE=16
 
