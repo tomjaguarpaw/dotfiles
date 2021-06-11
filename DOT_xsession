@@ -27,4 +27,4 @@ xmodmap /home/tom/Config/Desktop/xmodmaps/caps
 #TZ="America/New_York"
 #export TZ
 
-xmonad
+$HOME/.cabal/bin/xmonad
