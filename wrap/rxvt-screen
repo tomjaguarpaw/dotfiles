@@ -1,0 +1,3 @@
+#!/bin/sh
+
+exec sh ~/Config/Desktop/wrap/rxvt -e sh ~/Config/Desktop/wrap/screen-connect-new

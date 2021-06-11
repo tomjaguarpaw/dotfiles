@@ -1,0 +1,4 @@
+#!/bin/sh
+
+#screen -x -p + || echo doing second; screen -e^]]
+exec screen -e^]]

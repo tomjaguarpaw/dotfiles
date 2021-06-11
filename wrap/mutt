@@ -1,0 +1,13 @@
+#!/bin/sh
+
+cd ~/Mutt-Mail/
+
+if [ $# -eq 0 ]; then
+#	mutt -Z
+#	if [ $? = 1 ]; then
+   		TMPDIR=/home/tom/gazelle/tmp/mutt mutt -f =inbox
+#	fi
+else
+	mutt "$@"
+fi
+

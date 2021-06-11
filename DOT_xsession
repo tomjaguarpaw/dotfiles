@@ -1,0 +1,30 @@
+#DESKTOP_IMAGE=~/Images/cs_havana0000-br.png
+#DESKTOP_IMAGE=~/Images/cs_havana0000.bmp
+DESKTOP_IMAGE=~/Images/circuitbreaker.jpg
+#DESKTOP_IMAGE=~/Images/Elisha/elisha-face.jpg
+#DESKTOP_IMAGE=~/Images/Elisha/thesun13_cropped.jpg
+#DESKTOP_IMAGE=~/Images/Hokusai-fujibig.png
+#DESKTOP_IMAGE=~/Images/teotihuacan-wall.jpg
+#DESKTOP_IMAGE=~/Images/kingfisher-graham.jpg
+
+python ~/Config/Desktop/wrapselect.py rxvt-screen &
+python ~/Config/Desktop/wrapselect.py rxvt-screen &
+
+setxkbmap dvorak
+
+if [ -r "$DESKTOP_IMAGE" ]; then
+	nice -n 19 feh --bg-scale $DESKTOP_IMAGE
+else
+	nice -n 19 xsetroot -solid '#000022' &
+fi
+
+xset r rate 400 &
+xset mouse 0 0 &
+
+#setxkbmap -option terminate:ctrl_alt_bksp # If run in the background, sometimes these don't work!
+xmodmap /home/tom/Config/Desktop/xmodmaps/caps
+
+#TZ="America/New_York"
+#export TZ
+
+$HOME/.cabal/bin/xmonad

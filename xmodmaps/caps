@@ -1,0 +1,5 @@
+! Changes Caps Lock to Return and makes Pause into Caps Lock
+
+remove Lock = Caps_Lock
+keysym Caps_Lock = Return
+add Lock = Pause
