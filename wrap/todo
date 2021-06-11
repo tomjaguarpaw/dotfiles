@@ -1,7 +1,7 @@
 set -e
 
 cd $HOME/TODO
-jmacs -autoindent --wordwrap TODO
+sh ~/Config/dotfiles/Emacs/emacsclient.sh --tty --create-frame --alternate-editor=jmacs TODO
 git -c interactive.singlekey=true add --patch
 git commit -m "Generic TODO edit" || true
 git fetch origin
