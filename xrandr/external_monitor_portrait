@@ -1,0 +1,8 @@
+#http://www.jejik.com/articles/2008/10/setting_up_dual_monitors_system-wide_with_xrandr_on_debian_lenny/
+
+EXTERNAL=VGA-1
+INTERNAL=LVDS-1
+
+xrandr --output ${EXTERNAL} --preferred --pos 0x0 --output ${INTERNAL} --off
+xrandr -o left
+xrandr --dpi 100x100
