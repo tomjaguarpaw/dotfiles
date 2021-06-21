@@ -173,10 +173,23 @@ NEWLINE=$'\n'
 # All the prompt escapes are available at
 # http://zsh.sourceforge.net/Doc/Release/Prompt-Expansion.html
 set_prompt() {
-  PROMPT="${PROMPT_COLOUR}%#${PR_NO_COLOUR} %*%(?.. ${PROMPT_COLOUR}E%?${PR_NO_COLOUR})$(cat $PROMPT_FILE) %~ P$$ ${PC}%M${PR_NO_COLOUR}${NEWLINE}"
+  PROMPT="${PROMPT_COLOUR}%#${PR_NO_COLOUR} $ELAPSED_SHOW%*%(?.. ${PROMPT_COLOUR}E%?${PR_NO_COLOUR})$(cat $PROMPT_FILE) %~ P$$ ${PC}%M${PR_NO_COLOUR}${NEWLINE}"
 }
 
 precmd() {
+  if [ "$ELAPSED_DONE" = "FALSE" ]; then
+      cmd_end="$SECONDS"
+      ELAPSED="$((cmd_end-cmd_start))"
+      if [ "$ELAPSED" -gt 5 ]; then
+          ELAPSED_SHOW="[$ELAPSED seconds elapsed] "
+      else
+          ELAPSED_SHOW=""
+      fi
+      ELAPSED_DONE=TRUE
+  else
+      ELAPSED_SHOW=""
+  fi
+
   LAST_COMMAND_EXIT_CODE=$?
   if [ $LAST_COMMAND_EXIT_CODE -eq 0 ]; then
     PROMPT_COLOUR=${PR_GREEN}
@@ -191,4 +204,6 @@ precmd() {
 
 preexec() {
   horiz_bar
+  ELAPSED_DONE=FALSE
+  cmd_start="$SECONDS"
 }
