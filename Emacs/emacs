@@ -103,6 +103,11 @@
 ;; And only show in the current window
 (setq hl-global-line-sticky-flag nil)
 
+;; Drag the buffer up and down whilst keeping the point on the same
+;; text with M-p/M-n
+(global-set-key "\M-p" (lambda () (interactive) (scroll-up 4)))
+(global-set-key "\M-n" (lambda () (interactive) (scroll-down 4)))
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
