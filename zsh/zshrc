@@ -142,7 +142,13 @@ function git_describe() {
   description=$(git describe --abbrev=1 --all 2> /dev/null)
   if [[ ! -z "$description" ]]
   then
-    echo -n " $description"
+    without_remotes=${description#remotes/}
+    without_heads=${description#heads/}
+    if [ "$without_remotes" != "$description" ]; then
+        echo -n " $without_remotes"
+    elif [ "$without_heads" != "$description" ]; then
+        echo -n " $without_heads"
+    fi
   fi
 }
 
