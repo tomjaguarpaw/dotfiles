@@ -183,6 +183,13 @@ set_prompt() {
 }
 
 precmd() {
+  LAST_COMMAND_EXIT_CODE=$?
+  if [ $LAST_COMMAND_EXIT_CODE -eq 0 ]; then
+    PROMPT_COLOUR=${PR_GREEN}
+  else
+    PROMPT_COLOUR=${PR_RED}
+  fi
+
   if [ "$ELAPSED_DONE" = "FALSE" ]; then
       cmd_end="$SECONDS"
       ELAPSED="$((cmd_end-cmd_start))"
@@ -195,13 +202,6 @@ precmd() {
   else
       ELAPSED_SHOW=""
   fi
-
-  LAST_COMMAND_EXIT_CODE=$?
-  if [ $LAST_COMMAND_EXIT_CODE -eq 0 ]; then
-    PROMPT_COLOUR=${PR_GREEN}
-  else
-    PROMPT_COLOUR=${PR_RED}
-  fi  
   # The mv is the only thing that we need to be atomic, and it probably
   # is atomic enough.
   generate_prompt
