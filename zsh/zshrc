@@ -170,7 +170,7 @@ function make_prompt() {
 }
 
 generate_prompt() {
-  ((TEMPFILE=`tempfile`; make_prompt > $TEMPFILE; mv $TEMPFILE $PROMPT_FILE) &) > /dev/null
+  ((TEMPFILE=`mktemp`; make_prompt > $TEMPFILE; mv $TEMPFILE $PROMPT_FILE) &) > /dev/null
 }
 
 # https://superuser.com/questions/382503/how-can-i-put-a-newline-in-my-zsh-prompt-without-causing-terminal-redraw-issues/986820#986820
