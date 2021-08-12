@@ -1,1 +1,1 @@
-sh ~/Config/Desktop/wrap/rxvt -e ssh -o ServerAliveInterval=120 -t linode2 screen -x
+sh ~/Config/dotfiles/wrap/rxvt -e ssh -o ServerAliveInterval=120 -t linode2 screen -x

@@ -1,6 +1,6 @@
 import os, sys
 
-wrap_dir = '/home/tom/Config/Desktop/wrap'
+wrap_dir = '/home/tom/Config/dotfiles/wrap'
 
 d = {'todo': 'exec sh %%s/rxvt -e sh %s/todo' % wrap_dir,
      # ^^ This is a fairly shit way of doing substitution

@@ -7,8 +7,8 @@ DESKTOP_IMAGE=~/Images/circuitbreaker.jpg
 #DESKTOP_IMAGE=~/Images/teotihuacan-wall.jpg
 #DESKTOP_IMAGE=~/Images/kingfisher-graham.jpg
 
-python ~/Config/Desktop/wrapselect.py rxvt-screen &
-python ~/Config/Desktop/wrapselect.py rxvt-screen &
+python ~/Config/dotfiles/wrapselect.py rxvt-screen &
+python ~/Config/dotfiles/wrapselect.py rxvt-screen &
 
 setxkbmap dvorak
 
@@ -22,7 +22,7 @@ xset r rate 400 &
 xset mouse 0 0 &
 
 #setxkbmap -option terminate:ctrl_alt_bksp # If run in the background, sometimes these don't work!
-xmodmap /home/tom/Config/Desktop/xmodmaps/caps
+xmodmap /home/tom/Config/dotfiles/xmodmaps/caps
 
 #TZ="America/New_York"
 #export TZ

@@ -12,7 +12,7 @@ import XMonad.Layout.NoBorders
 import XMonad.StackSet (greedyView, shift)
 
 wrapSelect :: String -> X ()
-wrapSelect s = spawn $ "exec python /home/tom/Config/Desktop/wrapselect.py " ++ s
+wrapSelect s = spawn $ "exec python /home/tom/Config/dotfiles/wrapselect.py " ++ s
 
 tomppLayout "Tall" = "|||"
 tomppLayout "Mirror Tall" = "|-|"
