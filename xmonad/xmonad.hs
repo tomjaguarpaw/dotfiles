@@ -53,7 +53,7 @@ main = do
                                        , handleEventHook def ]
                  , workspaces = myWorkspaces
                  }
-              `additionalKeys` ([((0, xK_F1), wrapSelect "rxvt-tmux")
+              `additionalKeys` ([((0, xK_F1), wrapSelect "rxvt-screen")
                                 ,((0, xK_F2), wrapSelect "todo")
                                 ]
                                 ++ concatMap workspaceKeys myExtraWorkspaces)
