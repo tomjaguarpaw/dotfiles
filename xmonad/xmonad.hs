@@ -10,6 +10,9 @@ import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageDocks
 import XMonad.Layout.NoBorders
 import XMonad.StackSet (greedyView, shift)
+import qualified Graphics.X11
+import qualified Graphics.X11.Xinerama
+import Data.List (intercalate)
 
 wrapSelect :: String -> X ()
 wrapSelect s = spawn $ "exec python /home/tom/Config/dotfiles/wrapselect.py " ++ s
@@ -18,6 +21,18 @@ tomppLayout "Tall" = "|||"
 tomppLayout "Mirror Tall" = "|-|"
 tomppLayout "Full" = "| |"
 tomppLayout s = s
+
+xineramaDebug :: X ()
+xineramaDebug = do
+  rectangles <- liftIO $ Graphics.X11.openDisplay [] >>= Graphics.X11.Xinerama.getScreenInfo
+  -- Really ought to quote xinerama and show rectangle, but this will
+  -- do for now.
+  spawn ("xmessage \""
+         ++ "Compiled with Xinerema: "
+         ++ show Graphics.X11.Xinerama.compiledWithXinerama ++ "\n"
+         ++ "Rectangles:\n"
+         ++ intercalate "\n" (map show rectangles)
+         ++ "\"")
 
 myExtraWorkspaces :: [(KeySym, String)]
 myExtraWorkspaces = [ (xK_0, "0") ]
@@ -55,6 +70,8 @@ main = do
                  }
               `additionalKeys` ([((0, xK_F1), wrapSelect "rxvt-screen")
                                 ,((0, xK_F2), wrapSelect "todo")
+                                ,((mod1Mask .|. shiftMask .|. controlMask, xK_x),
+                                  xineramaDebug)
                                 ]
                                 ++ concatMap workspaceKeys myExtraWorkspaces)
               `removeKeys` [ (mod1Mask, xK_w)
