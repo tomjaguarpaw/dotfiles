@@ -55,6 +55,9 @@
   (setq ispell-dictionary "british")
   (add-hook 'markdown-mode-hook 'auto-fill-mode)
   (add-hook 'markdown-mode-hook 'whitespace-mode)
+  :config
+  (define-key markdown-mode-map (kbd "M-n") nil)
+  (define-key markdown-mode-map (kbd "M-p") nil)
   )
 
 (use-package helm
