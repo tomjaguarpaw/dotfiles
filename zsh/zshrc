@@ -1,3 +1,4 @@
+echo starting
 # There's a bit of latency in the startup.  It seems to be mostly compinit
 # and setting the HISTFILE (which is large!)
 
@@ -9,17 +10,27 @@ export EDITOR="emacsclient --tty --create-frame --alternate-editor=jmacs"
 HISTFILE=~/.zsh_history
 HISTSIZE=100000
 SAVEHIST=100000
+echo setopt
 setopt appendhistory nomatch
 # Don't save duplicates
 # https://unix.stackexchange.com/a/599656/43180
 setopt histignorealldups
+echo setopt done
+echo bindkey
 bindkey -e
+echo bindkey done
 # End of lines configured by zsh-newuser-install
 # The following lines were added by compinstall
+echo zstyle
 zstyle :compinstall filename $ZSHRC
+echo zstyledone
 
+echo autoload
 autoload -Uz compinit
+echo autoload done
+echo compinit
 compinit
+echo compinit done
 # End of lines added by compinstall
 
 eval `dircolors $CONFIG_DIR/dircolors-data`
@@ -219,3 +230,9 @@ recycle () {
 
 # Disable Ctrl-S and Ctrl-Q as start and stop terminal
 stty stop ''; stty start ''
+
+echo done all
+
+# PATH=~/starship.d:$PATH
+
+# eval "$(starship init zsh)"

@@ -32,6 +32,10 @@ myWorkspaces = workspaces def ++ map snd myExtraWorkspaces
 
 main :: IO ()
 main = do
+    -- -x 1 to run xmobar on screen 1 only
+    -- https://stackoverflow.com/questions/50876381/how-to-spawn-xmobar-instance-for-each-screen
+    -- xmproc <- spawnPipe "xmobar -x 1"
+    -- (But this seems to mean that xmobar is hidden beneath windows)
     xmproc <- spawnPipe "xmobar"
     xmonad $ def { manageHook = manageDocks <+> manageHook def
                  , layoutHook = smartBorders $ avoidStruts $ layoutHook def

@@ -74,6 +74,11 @@
   (global-undo-tree-mode)
   )
 
+; https://stackoverflow.com/questions/37446876/how-to-put-emacs-into-magits-commit-edit-mode-from-emacsclient
+; (require 'log-edit)
+; (require 'vc-git)
+; (add-to-list 'auto-mode-alist '("COMMIT_EDITMSG\\'" . fundamental-mode))
+
 ;; https://tuhdo.github.io/helm-intro.html
 
 (global-set-key (kbd "C-x C-f") 'helm-find-files)
@@ -118,6 +123,20 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(dante-methods (quote (bare-cabal bare-ghci)))
+ '(dante-methods-alist
+   (quote
+    ((bare-cabal
+      (closure
+       (t)
+       (d)
+       (directory-files d t "..cabal$"))
+      ("cabal" "repl" dante-target "--builddir=dist/dante" "--enable-tests"))
+     (bare-ghci
+      (closure
+       (t)
+       (_)
+       t)
+      ("ghci")))))
  '(load-home-init-file t t)
  '(whitespace-style
    (quote
@@ -130,8 +149,9 @@
  '(default ((t (:inherit nil :stipple nil :background "black" :foreground "white" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 113 :width normal :foundry "unknown" :family "Inconsolata"))))
  '(company-tooltip ((t (:background "white" :foreground "black"))))
  '(fixed-pitch ((t (:family "Inconsolata"))))
- '(whitespace-empty ((t (:background "saddle brown" :foreground "firebrick"))))
  '(helm-selection ((t (:background "blue" :distant-foreground "black"))))
+ '(hl-line ((t (:background "gray16"))))
+ '(whitespace-empty ((t (:background "saddle brown" :foreground "firebrick"))))
  '(whitespace-tab ((t (:background "black" :foreground "cyan")))))
 
 (setq ring-bell-function 'ignore)
