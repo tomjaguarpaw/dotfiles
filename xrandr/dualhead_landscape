@@ -1,0 +1,4 @@
+. ~/Config/dotfiles/xrandr/monitor_ids
+
+xrandr --output ${EXTERNAL} --rotation normal --preferred --output ${INTERNAL} --below ${EXTERNAL} --preferred
+#xrandr -o normal --output HDMI1 --preferred --output LVDS1 --below HDMI1 --preferred
