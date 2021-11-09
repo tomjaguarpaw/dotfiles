@@ -1,3 +1,5 @@
+scrollback 1000000
+
 bind c screen 1
 bind ^c screen 1
 bind 0 select 10
