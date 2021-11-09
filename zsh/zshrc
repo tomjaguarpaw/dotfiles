@@ -213,3 +213,10 @@ preexec() {
   ELAPSED_DONE=FALSE
   cmd_start="$SECONDS"
 }
+
+recycle () {
+    TIME=`date -Ins`
+    BIN=$HOME/Recycle/$TIME
+    mkdir $BIN
+    mv $@ $BIN
+}
