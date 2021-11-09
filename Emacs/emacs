@@ -12,6 +12,7 @@
 
 (show-paren-mode 1)
 (column-number-mode +1)
+(setq mouse-yank-at-point t)
 
 (add-to-list 'auto-mode-alist '("\\.ks\\'" . lisp-mode))
 
