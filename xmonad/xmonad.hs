@@ -11,6 +11,7 @@ import XMonad.Hooks.StatusBar.PP (dynamicLogWithPP,
                                   xmobarPP, ppOutput, ppTitle, ppExtras, ppLayout)
 import XMonad.Hooks.ManageDocks
 import XMonad.Layout.NoBorders
+import XMonad.Util.Loggers (logCmd, loadAvg, battery)
 import XMonad.StackSet (greedyView, shift)
 import qualified Graphics.X11
 import qualified Graphics.X11.Xinerama
@@ -18,6 +19,11 @@ import Data.List (intercalate)
 
 wrapSelect :: String -> X ()
 wrapSelect s = spawn $ "exec python /home/tom/Config/dotfiles/wrapselect.py " ++ s
+
+-- logCmd takes only the first line.  If the string ends in a newline
+-- everything will end up getting pushed off the xmobar!
+freeMem :: X (Maybe String)
+freeMem = logCmd "/bin/sh /home/tom/free.sh"
 
 tomppLayout "Tall" = "|||"
 tomppLayout "Mirror Tall" = "|-|"
@@ -56,6 +62,7 @@ main = do
                                { ppOutput = hPutStrLn xmproc
                                , ppTitle = xmobarColor "green" "" . shorten 100
                                , ppLayout = xmobarColor "lightblue" "" . tomppLayout
+                               , ppExtras = [loadAvg, battery, freeMem]
                                }
                  , borderWidth = 2
                  -- The handleEventHook entry seems to be needed so that
