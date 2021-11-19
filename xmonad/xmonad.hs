@@ -6,7 +6,9 @@ import System.IO(hPutStrLn)
 import XMonad
 import XMonad.Util.EZConfig(additionalKeys, removeKeys)
 import XMonad.Util.Run(spawnPipe)
-import XMonad.Hooks.DynamicLog
+import XMonad.Hooks.StatusBar.PP (dynamicLogWithPP,
+                                  xmobarColor, shorten,
+                                  xmobarPP, ppOutput, ppTitle, ppExtras, ppLayout)
 import XMonad.Hooks.ManageDocks
 import XMonad.Layout.NoBorders
 import XMonad.StackSet (greedyView, shift)
