@@ -163,9 +163,9 @@ function git_rebasing() {
 function make_prompt() {
   git_stash_count
   jobs_count
+  git_diff
   git_rebasing
   git_describe
-  git_diff
   staging_area
 }
 
