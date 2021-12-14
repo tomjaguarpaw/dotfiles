@@ -2,4 +2,4 @@
 
 . ~/Config/dotfiles/xrandr/monitor_ids
 
-xrandr --output $INTERNAL --preferred --pos 0x0 --output $EXTERNAL --off
+xrandr --output $INTERNAL --rotation normal --preferred --pos 0x0 --output $EXTERNAL --off
