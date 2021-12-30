@@ -213,3 +213,6 @@ recycle () {
     mkdir $BIN
     mv $@ $BIN
 }
+
+# Disable Ctrl-S and Ctrl-Q as start and stop terminal
+stty stop ''; stty start ''
