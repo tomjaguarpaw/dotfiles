@@ -219,3 +219,13 @@ recycle () {
 
 # Disable Ctrl-S and Ctrl-Q as start and stop terminal
 stty stop ''; stty start ''
+
+DIFF_SO_FANCY=$HOME/Config/dotfiles/git-diff-so-fancy.sh
+if [ -e $DIFF_SO_FANCY ]; then
+  setopt complete_aliases
+  # Checking out an old commit of the Config repo can remove
+  # git-diff-so-fancy.sh, so git is set to this alias, if that
+  # happens, you should run exec zsh to restore the full earlier zsh
+  # configuration.
+  alias git="sh $DIFF_SO_FANCY"
+fi
