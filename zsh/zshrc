@@ -156,6 +156,16 @@ function git_rebasing() {
   fi
 }
 
+function git_log() {
+  GIT_LOG=$(git log --color --graph --decorate --pretty=format:"%C(auto)%h %<(7,trunc)%C(auto)%ae%Creset%C(auto)%d %s [%ar]%Creset" HEAD~3.. 2> /dev/null | head -n 3)
+  result=$?
+  if [[ $result -eq 0 ]]
+  then
+    echo
+    echo "$GIT_LOG"
+  fi
+}
+
 function make_prompt() {
   git_stash_count
   jobs_count
@@ -163,6 +173,7 @@ function make_prompt() {
   git_rebasing
   git_describe
   staging_area
+  git_log
 }
 
 generate_prompt() {
