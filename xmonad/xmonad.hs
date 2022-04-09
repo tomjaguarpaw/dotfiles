@@ -60,7 +60,7 @@ main = do
                  , layoutHook = smartBorders $ avoidStruts $ layoutHook def
                  , logHook = dynamicLogWithPP xmobarPP
                                { ppOutput = hPutStrLn xmproc
-                               , ppTitle = xmobarColor "green" "" . shorten 100
+                               , ppTitle = xmobarColor "green" "" . shorten 50
                                , ppLayout = xmobarColor "lightblue" "" . tomppLayout
                                , ppExtras = [loadAvg, battery, freeMem]
                                }
