@@ -10,6 +10,7 @@ import XMonad.Hooks.StatusBar.PP (dynamicLogWithPP,
                                   xmobarColor, shorten,
                                   xmobarPP, ppOutput, ppTitle, ppExtras, ppLayout)
 import XMonad.Hooks.ManageDocks
+import XMonad.Hooks.EwmhDesktops
 import XMonad.Layout.NoBorders
 import XMonad.Util.Loggers (logCmd, loadAvg, battery)
 import XMonad.StackSet (greedyView, shift)
@@ -56,7 +57,8 @@ myWorkspaces = workspaces def ++ map snd myExtraWorkspaces
 main :: IO ()
 main = do
     xmproc <- spawnPipe "xmobar"
-    xmonad $ def { manageHook = manageDocks <+> manageHook def
+    xmonad $ ewmhFullscreen $ ewmh def
+                 { manageHook = manageDocks <+> manageHook def
                  , layoutHook = smartBorders $ avoidStruts $ layoutHook def
                  , logHook = dynamicLogWithPP xmobarPP
                                { ppOutput = hPutStrLn xmproc
