@@ -1,2 +1,5 @@
-EXTERNAL=VGA-1
-INTERNAL=LVDS-1
+# Perhaps make these functions, since they time some time to run
+
+INTERNAL=$(xrandr | grep " connected primary" | awk '{ print$1 }')
+# The following only works if there is one external monitor
+EXTERNAL=$(xrandr | grep " connected [^p]" | awk '{ print$1 }')
