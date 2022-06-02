@@ -228,6 +228,11 @@ recycle () {
     mv $@ $BIN
 }
 
+# Delete this at some point and see if /etc/default/locale comes through
+export LANG=en_GB.UTF-8
+
+export PATH=$HOME/.ghcup/bin:$PATH
+
 # Disable Ctrl-S and Ctrl-Q as start and stop terminal
 stty stop ''; stty start ''
 
