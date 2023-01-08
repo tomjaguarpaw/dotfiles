@@ -11,6 +11,12 @@
 
 ;; transpose-chars
 (global-unset-key "\C-t")
+;; capitalize-word
+(global-unset-key "\M-c")
+;; upcase-word
+(global-unset-key "\M-u")
+;; downcase-word
+(global-unset-key "\M-l")
 
 ;; Make sure CTRL-h works in searches, too.
 (setq search-delete-char (string-to-char "\C-h"))
