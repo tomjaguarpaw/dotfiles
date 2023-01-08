@@ -9,6 +9,7 @@
 (global-set-key "\C-h" 'delete-backward-char)
 (define-key global-map "\C-h" 'backward-delete-char)
 
+;; transpose-chars
 (global-unset-key "\C-t")
 
 ;; Make sure CTRL-h works in searches, too.
