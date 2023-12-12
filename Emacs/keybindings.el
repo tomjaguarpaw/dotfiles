@@ -27,7 +27,7 @@
                 (lambda
 		  ()
 		  (interactive)
-		  (message "Use M-x save-buffers-kill-terminal")))
+		  (message "Use M-x save-buffers-kill-terminal or C-x 5 0")))
 
 (setq visible-cursor nil)
 
