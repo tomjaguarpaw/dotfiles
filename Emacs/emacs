@@ -143,7 +143,7 @@
  '(dante-methods (quote (bare-cabal bare-ghci)))
  '(load-home-init-file t t)
  '(lsp-haskell-server-args '("-d" "-l" "/tmp/hls.log" "+RTS" "-M4G"))
- '(lsp-haskell-server-path "haskell-language-server-8.10.7")
+ '(lsp-haskell-server-path "haskell-language-server-wrapper-2.4.0.0")
  '(lsp-prefer-flymake nil)
  '(package-selected-packages
    (quote
