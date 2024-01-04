@@ -13,6 +13,7 @@ setopt appendhistory nomatch
 # Don't save duplicates
 # https://unix.stackexchange.com/a/599656/43180
 setopt histignorealldups
+# Set emacs keybindings
 bindkey -e
 # End of lines configured by zsh-newuser-install
 # The following lines were added by compinstall
