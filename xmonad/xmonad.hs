@@ -14,6 +14,7 @@ import XMonad.Hooks.StatusBar.PP (dynamicLogWithPP,
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.EwmhDesktops
 import XMonad.Layout.NoBorders
+import XMonad.Layout.Spiral
 import XMonad.Util.Loggers (logCmd, loadAvg, battery)
 import XMonad.StackSet (greedyView, shift)
 import qualified Graphics.X11
@@ -56,8 +57,8 @@ workspaceKeys (key, ws) =
 myWorkspaces :: [String]
 myWorkspaces = workspaces def ++ map snd myExtraWorkspaces
 
-myLayout :: (Tall `Choose` (Mirror Tall `Choose` Full)) Window
-myLayout = layoutHook def
+myLayout :: (SpiralWithDir `Choose` (SpiralWithDir `Choose` Full)) Window
+myLayout = spiral 1 ||| spiralWithDir South CW 1 ||| Full
 
 main :: IO ()
 main = do
