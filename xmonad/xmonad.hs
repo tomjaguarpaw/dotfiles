@@ -2,6 +2,8 @@
 --
 -- ~/.cabal/bin/xmonad --recompile && ~/.cabal/bin/xmonad --restart
 
+{-# LANGUAGE TypeOperators #-}
+
 import System.IO(hPutStrLn)
 import XMonad
 import XMonad.Util.EZConfig(additionalKeys, removeKeys)
@@ -54,12 +56,15 @@ workspaceKeys (key, ws) =
 myWorkspaces :: [String]
 myWorkspaces = workspaces def ++ map snd myExtraWorkspaces
 
+myLayout :: (Tall `Choose` (Mirror Tall `Choose` Full)) Window
+myLayout = layoutHook def
+
 main :: IO ()
 main = do
     xmproc <- spawnPipe "xmobar"
     xmonad $ ewmhFullscreen $ ewmh def
                  { manageHook = manageDocks <+> manageHook def
-                 , layoutHook = smartBorders $ avoidStruts $ layoutHook def
+                 , layoutHook = smartBorders $ avoidStruts $ myLayout
                  , logHook = dynamicLogWithPP xmobarPP
                                { ppOutput = hPutStrLn xmproc
                                , ppTitle = xmobarColor "green" "" . shorten 50
