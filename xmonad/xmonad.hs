@@ -32,6 +32,7 @@ freeMem = logCmd "/bin/sh /home/tom/free.sh"
 tomppLayout "Tall" = "|||"
 tomppLayout "Mirror Tall" = "|-|"
 tomppLayout "Full" = "| |"
+tomppLayout "Spiral" = "𖦹"
 tomppLayout s = s
 
 xineramaDebug :: X ()
