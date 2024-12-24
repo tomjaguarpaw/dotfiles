@@ -2,7 +2,9 @@
 --
 -- ~/.cabal/bin/xmonad --recompile && ~/.cabal/bin/xmonad --restart
 {-# LANGUAGE FlexibleInstances #-}
+{-# LANGUAGE LambdaCase #-}
 {-# LANGUAGE MultiParamTypeClasses #-}
+{-# LANGUAGE TypeApplications #-}
 {-# LANGUAGE TypeOperators #-}
 
 import Data.List (intercalate)
@@ -10,6 +12,7 @@ import Data.Ratio (denominator, numerator)
 import qualified Graphics.X11 (openDisplay)
 import qualified Graphics.X11.Xinerama (compiledWithXinerama, getScreenInfo)
 import System.IO (hPutStrLn)
+import Text.Read (readMaybe)
 import XMonad
 import XMonad.Hooks.EwmhDesktops (ewmh, ewmhFullscreen)
 import XMonad.Hooks.ManageDocks (avoidStruts, docksEventHook, manageDocks)
@@ -37,6 +40,19 @@ wrapSelect s = spawn $ "exec python /home/tom/Config/dotfiles/wrapselect.py " ++
 -- everything will end up getting pushed off the xmobar!
 freeMem :: X (Maybe String)
 freeMem = logCmd "/bin/sh /home/tom/free.sh"
+
+myBattery :: X (Maybe String)
+myBattery = do
+  battery >>= \case
+    Nothing -> pure Nothing
+    Just b -> do
+      -- drop the % and +/-
+      let b' = (reverse . drop 2 . reverse) b
+      let colorIt = case readMaybe @Int b' of
+            Nothing -> id
+            Just b'' -> if b'' <= 10 then xmobarColor "red" "" else id
+
+      pure (Just (colorIt b))
 
 tomppLayout "Tall" = "|||"
 tomppLayout "Mirror Tall" = "|-|"
@@ -106,7 +122,7 @@ main = do
                   { ppOutput = hPutStrLn xmproc,
                     ppTitle = xmobarColor "green" "" . shorten 50,
                     ppLayout = xmobarColor "lightblue" "" . tomppLayout,
-                    ppExtras = [loadAvg, battery, freeMem]
+                    ppExtras = [loadAvg, myBattery, freeMem]
                   },
             borderWidth = 2,
             -- The handleEventHook entry seems to be needed so that
