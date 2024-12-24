@@ -1,9 +1,12 @@
 -- To restart
 --
 -- ~/.cabal/bin/xmonad --recompile && ~/.cabal/bin/xmonad --restart
+{-# LANGUAGE FlexibleInstances #-}
+{-# LANGUAGE MultiParamTypeClasses #-}
 {-# LANGUAGE TypeOperators #-}
 
 import Data.List (intercalate)
+import Data.Ratio (denominator, numerator)
 import qualified Graphics.X11
 import qualified Graphics.X11.Xinerama
 import System.IO (hPutStrLn)
@@ -22,7 +25,7 @@ import XMonad.Hooks.StatusBar.PP
   )
 import XMonad.Layout.NoBorders
 import XMonad.Layout.Spiral
-import XMonad.StackSet (greedyView, shift)
+import XMonad.StackSet (greedyView, integrate, shift)
 import XMonad.Util.EZConfig (additionalKeys, removeKeys)
 import XMonad.Util.Loggers (battery, loadAvg, logCmd)
 import XMonad.Util.Run (spawnPipe)
@@ -39,6 +42,7 @@ tomppLayout "Tall" = "|||"
 tomppLayout "Mirror Tall" = "|-|"
 tomppLayout "Full" = "| |"
 tomppLayout "Spiral" = "𖦹"
+tomppLayout "MySpiral" = "𖦹"
 tomppLayout s = s
 
 xineramaDebug :: X ()
@@ -68,8 +72,24 @@ workspaceKeys (key, ws) =
 myWorkspaces :: [String]
 myWorkspaces = workspaces def ++ map snd myExtraWorkspaces
 
-myLayout :: (SpiralWithDir `Choose` (SpiralWithDir `Choose` Full)) Window
-myLayout = spiral 1 ||| spiralWithDir South CW 1 ||| Full
+data MySpiralWithDir a
+  = MkMySpiralWithDir Direction XMonad.Layout.Spiral.Rotation Rational
+  deriving (Read, Show)
+
+instance LayoutClass MySpiralWithDir a where
+  pureLayout (MkMySpiralWithDir dir rot scale) sc stack = zip ws rects
+    where
+      ws = integrate stack
+      -- ratios = blend scale . reverse . take (length ws - 1) . mkRatios $ drop 1 fibs
+      ratios = replicate (length ws - 1) 0.5 ++ [1]
+      rects = divideRects (zip ratios dirs) sc
+      dirs = dropWhile (/= dir) $ case rot of
+        CW -> cycle [East .. North]
+        CCW -> cycle [North, West, South, East]
+  description _ = "MySpiral"
+
+myLayout :: (MySpiralWithDir `Choose` (MySpiralWithDir `Choose` Full)) Window
+myLayout = MkMySpiralWithDir South CW 1 ||| MkMySpiralWithDir East CW 1 ||| Full
 
 main :: IO ()
 main = do
@@ -120,3 +140,37 @@ main = do
                        (mod1Mask .|. shiftMask, xK_c),
                        (mod1Mask .|. shiftMask, xK_Return)
                      ]
+
+-- This will produce one more rectangle than there are splits details
+divideRects :: [(Rational, Direction)] -> Rectangle -> [Rectangle]
+divideRects [] r = [r]
+divideRects ((r, d) : xs) rect = case divideRect r d rect of
+  (r1, r2) -> r1 : divideRects xs r2
+
+-- It's much simpler if we work with all Integers and convert to
+-- Rectangle at the end.
+data Rect = Rect Integer Integer Integer Integer
+
+fromRect :: Rect -> Rectangle
+fromRect (Rect x y w h) = Rectangle (fromIntegral x) (fromIntegral y) (fromIntegral w) (fromIntegral h)
+
+toRect :: Rectangle -> Rect
+toRect (Rectangle x y w h) = Rect (fromIntegral x) (fromIntegral y) (fromIntegral w) (fromIntegral h)
+
+divideRect :: Rational -> Direction -> Rectangle -> (Rectangle, Rectangle)
+divideRect r d rect =
+  let (r1, r2) = divideRect' r d $ toRect rect
+   in (fromRect r1, fromRect r2)
+
+divideRect' :: Rational -> Direction -> Rect -> (Rect, Rect)
+divideRect' ratio dir (Rect x y w h) =
+  case dir of
+    East -> let (w1, w2) = chop ratio w in (Rect x y w1 h, Rect (x + w1) y w2 h)
+    South -> let (h1, h2) = chop ratio h in (Rect x y w h1, Rect x (y + h1) w h2)
+    West -> let (w1, w2) = chop (1 - ratio) w in (Rect (x + w1) y w2 h, Rect x y w1 h)
+    North -> let (h1, h2) = chop (1 - ratio) h in (Rect x (y + h1) w h2, Rect x y w h1)
+
+chop :: Rational -> Integer -> (Integer, Integer)
+chop rat n =
+  let f = (fromIntegral n * numerator rat) `div` denominator rat
+   in (f, n - f)
