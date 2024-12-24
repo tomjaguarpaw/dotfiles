@@ -7,12 +7,12 @@
 
 import Data.List (intercalate)
 import Data.Ratio (denominator, numerator)
-import qualified Graphics.X11
-import qualified Graphics.X11.Xinerama
+import qualified Graphics.X11 (openDisplay)
+import qualified Graphics.X11.Xinerama (compiledWithXinerama, getScreenInfo)
 import System.IO (hPutStrLn)
 import XMonad
-import XMonad.Hooks.EwmhDesktops
-import XMonad.Hooks.ManageDocks
+import XMonad.Hooks.EwmhDesktops (ewmh, ewmhFullscreen)
+import XMonad.Hooks.ManageDocks (avoidStruts, docksEventHook, manageDocks)
 import XMonad.Hooks.StatusBar.PP
   ( dynamicLogWithPP,
     ppExtras,
@@ -23,8 +23,8 @@ import XMonad.Hooks.StatusBar.PP
     xmobarColor,
     xmobarPP,
   )
-import XMonad.Layout.NoBorders
-import XMonad.Layout.Spiral
+import XMonad.Layout.NoBorders (smartBorders)
+import XMonad.Layout.Spiral (Direction (..), Rotation (..))
 import XMonad.StackSet (greedyView, integrate, shift)
 import XMonad.Util.EZConfig (additionalKeys, removeKeys)
 import XMonad.Util.Loggers (battery, loadAvg, logCmd)
