@@ -113,8 +113,8 @@ instance LayoutClass MySpiralWithDir a where
         CCW -> cycle [North, West, South, East]
   description _ = "MySpiral"
 
-myLayout :: (MySpiralWithDir `Choose` (MySpiralWithDir `Choose` Full)) Window
-myLayout = MkMySpiralWithDir True CW 1 ||| MkMySpiralWithDir False CW 1 ||| Full
+myLayout :: (MySpiralWithDir `Choose` (Full `Choose` MySpiralWithDir)) Window
+myLayout = MkMySpiralWithDir True CW 1 ||| Full ||| MkMySpiralWithDir False CW 1
 
 main :: IO ()
 main = do
