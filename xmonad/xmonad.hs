@@ -58,7 +58,7 @@ tomppLayout "Tall" = "|||"
 tomppLayout "Mirror Tall" = "|-|"
 tomppLayout "Full" = "| |"
 tomppLayout "Spiral" = "𖦹"
-tomppLayout "MySpiral" = "𖦹"
+tomppLayout "Z" = "Z"
 tomppLayout s = s
 
 xineramaDebug :: X ()
@@ -103,14 +103,12 @@ instance LayoutClass MySpiralWithDir a where
       ratios = replicate (length ws - 1) 0.5 ++ [1]
       rects = divideRects (zip ratios dirs) sc
 
-      dir =
+      dirs =
         if (rect_width sc > rect_height sc) == natural
-          then East
-          else South
+          then cycle [East, South]
+          else cycle [South, East]
 
-      dirs = dropWhile (/= dir) $
-        cycle [East .. North]
-  description _ = "MySpiral"
+  description _ = "Z"
 
 myLayout :: (MySpiralWithDir `Choose` (Full `Choose` MySpiralWithDir)) Window
 myLayout = MkMySpiralWithDir True 1 ||| Full ||| MkMySpiralWithDir False 1
