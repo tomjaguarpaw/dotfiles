@@ -92,11 +92,11 @@ data MySpiralWithDir a
   -- Bool says "is the layout natural", i.e. a landscape screen's
   -- first division is top-to-bottom and a portrait screen's first
   -- division is left-to-right.
-  = MkMySpiralWithDir Bool XMonad.Layout.Spiral.Rotation Rational
+  = MkMySpiralWithDir Bool Rational
   deriving (Read, Show)
 
 instance LayoutClass MySpiralWithDir a where
-  pureLayout (MkMySpiralWithDir natural rot scale) sc stack = zip ws rects
+  pureLayout (MkMySpiralWithDir natural scale) sc stack = zip ws rects
     where
       ws = integrate stack
       -- ratios = blend scale . reverse . take (length ws - 1) . mkRatios $ drop 1 fibs
@@ -108,13 +108,12 @@ instance LayoutClass MySpiralWithDir a where
           then East
           else South
 
-      dirs = dropWhile (/= dir) $ case rot of
-        CW -> cycle [East .. North]
-        CCW -> cycle [North, West, South, East]
+      dirs = dropWhile (/= dir) $
+        cycle [East .. North]
   description _ = "MySpiral"
 
 myLayout :: (MySpiralWithDir `Choose` (Full `Choose` MySpiralWithDir)) Window
-myLayout = MkMySpiralWithDir True CW 1 ||| Full ||| MkMySpiralWithDir False CW 1
+myLayout = MkMySpiralWithDir True 1 ||| Full ||| MkMySpiralWithDir False 1
 
 main :: IO ()
 main = do
