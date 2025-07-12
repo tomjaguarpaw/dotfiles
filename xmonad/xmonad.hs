@@ -29,6 +29,7 @@ import XMonad.Hooks.StatusBar.PP
 import XMonad.Layout.NoBorders (smartBorders)
 import XMonad.Layout.Spiral (Direction (..), Rotation (..))
 import XMonad.StackSet (greedyView, integrate, shift)
+import qualified XMonad.StackSet as W
 import XMonad.Util.EZConfig (additionalKeys, removeKeys)
 import XMonad.Util.Loggers (battery, loadAvg, logCmd)
 import XMonad.Util.Run (spawnPipe)
@@ -149,7 +150,9 @@ main = do
                              ((0, xK_F2), wrapSelect "todo"),
                              ( (mod1Mask .|. shiftMask .|. controlMask, xK_x),
                                xineramaDebug
-                             )
+                             ),
+                             ((mod1Mask, xK_period), windows W.swapDown),
+                             ((mod1Mask, xK_comma), windows W.swapUp)
                            ]
                              ++ concatMap workspaceKeys myExtraWorkspaces
                          )
@@ -160,7 +163,11 @@ main = do
                        (mod1Mask .|. shiftMask, xK_p),
                        (mod1Mask .|. shiftMask, xK_q),
                        (mod1Mask .|. shiftMask, xK_c),
-                       (mod1Mask .|. shiftMask, xK_Return)
+                       (mod1Mask .|. shiftMask, xK_Return),
+                       (mod1Mask, xK_j),
+                       (mod1Mask, xK_k),
+                       (mod1Mask .|. shiftMask, xK_j),
+                       (mod1Mask .|. shiftMask, xK_k)
                      ]
 
 -- This will produce one more rectangle than there are splits details
