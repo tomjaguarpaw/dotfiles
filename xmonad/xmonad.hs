@@ -90,10 +90,10 @@ myWorkspaces :: [String]
 myWorkspaces = workspaces def ++ map snd myExtraWorkspaces
 
 data MySpiralWithDir a
-  -- Bool says "is the layout natural", i.e. a landscape screen's
-  -- first division is top-to-bottom and a portrait screen's first
-  -- division is left-to-right.
-  = MkMySpiralWithDir Bool Rational
+  = -- Bool says "is the layout natural", i.e. a landscape screen's
+    -- first division is top-to-bottom and a portrait screen's first
+    -- division is left-to-right.
+    MkMySpiralWithDir Bool Rational
   deriving (Read, Show)
 
 instance LayoutClass MySpiralWithDir a where
