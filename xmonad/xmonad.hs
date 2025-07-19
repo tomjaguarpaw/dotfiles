@@ -152,7 +152,9 @@ main = do
                                xineramaDebug
                              ),
                              ((mod1Mask, xK_period), windows W.swapDown),
-                             ((mod1Mask, xK_comma), windows W.swapUp)
+                             ((mod1Mask, xK_comma), windows W.swapUp),
+                             ((mod1Mask, xK_e), windows (rotate False)),
+                             ((mod1Mask, xK_o), windows (rotate True))
                            ]
                              ++ concatMap workspaceKeys myExtraWorkspaces
                          )
@@ -169,6 +171,20 @@ main = do
                        (mod1Mask .|. shiftMask, xK_j),
                        (mod1Mask .|. shiftMask, xK_k)
                      ]
+
+-- This is W.reverseStack, but it's not exposed
+reverseStack :: W.Stack a -> W.Stack a
+reverseStack s = s {W.up = W.down s, W.down = W.up s}
+
+rotate :: Bool -> WindowSet -> WindowSet
+rotate f =
+  W.modify'
+    (if f then rotateStack else reverseStack . rotateStack . reverseStack)
+
+rotateStack :: W.Stack a -> W.Stack a
+rotateStack s = case reverse (W.up s) of
+  [] -> s {W.up = reverse (W.down s), W.down = []}
+  x : xs -> s {W.up = reverse xs, W.down = W.down s ++ [x]}
 
 -- This will produce one more rectangle than there are splits details
 divideRects :: [(Rational, Direction)] -> Rectangle -> [Rectangle]
