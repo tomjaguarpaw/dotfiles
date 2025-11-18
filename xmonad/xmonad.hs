@@ -117,6 +117,15 @@ myLayout = MkMySpiralWithDir True 1 ||| Full ||| MkMySpiralWithDir False 1
 main :: IO ()
 main = do
   xmproc <- spawnPipe "xmobar"
+
+  let myXmobarPP =
+        xmobarPP
+          { ppOutput = hPutStrLn xmproc,
+            ppTitle = xmobarColor "green" "" . shorten 50,
+            ppLayout = xmobarColor "lightblue" "" . tomppLayout,
+            ppExtras = [loadAvg, myBattery, freeMem]
+          }
+
   xmonad $
     ewmhFullscreen $
       ewmh
@@ -125,12 +134,7 @@ main = do
             layoutHook = smartBorders $ avoidStruts $ myLayout,
             logHook =
               dynamicLogWithPP
-                xmobarPP
-                  { ppOutput = hPutStrLn xmproc,
-                    ppTitle = xmobarColor "green" "" . shorten 50,
-                    ppLayout = xmobarColor "lightblue" "" . tomppLayout,
-                    ppExtras = [loadAvg, myBattery, freeMem]
-                  },
+                myXmobarPP,
             borderWidth = 2,
             -- The handleEventHook entry seems to be needed so that
             -- windows don't cover xmobar on the desktop that is active
