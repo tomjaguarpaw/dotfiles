@@ -3,9 +3,8 @@ Config { font = "Inconsolata 16"
        , fgColor = "grey"
        , position = Bottom
        , lowerOnStart = True
-       , commands = [ Run StdinReader
-                    ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = "%StdinReader%"
+       , commands = [ Run XMonadLog ],
+       , template = "%XMonadLog%"
        }
