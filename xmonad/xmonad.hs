@@ -128,7 +128,7 @@ main = do
 
   xmonad $
     ewmhFullscreen $
-      ewmh
+      ewmh $
         def
           { manageHook = manageDocks <+> manageHook def,
             layoutHook = smartBorders $ avoidStruts $ myLayout,
