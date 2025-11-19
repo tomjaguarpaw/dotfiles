@@ -167,8 +167,6 @@ main = do
                 rec
                   { layoutHook = smartBorders $ avoidStruts $ myLayout,
                     borderWidth = 2,
-                    handleEventHook =
-                        handleEventHook def,
                     workspaces = myWorkspaces
                   }
             )
