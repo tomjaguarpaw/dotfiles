@@ -165,8 +165,7 @@ main = do
           $ docks
           $ ( \rec ->
                 rec
-                  { manageHook = manageHook def,
-                    layoutHook = smartBorders $ avoidStruts $ myLayout,
+                  { layoutHook = smartBorders $ avoidStruts $ myLayout,
                     borderWidth = 2,
                     handleEventHook =
                       mconcat
