@@ -146,6 +146,20 @@ main = do
               (mod1Mask .|. shiftMask, xK_j),
               (mod1Mask .|. shiftMask, xK_k)
             ]
+          $ flip
+            additionalKeys
+            ( [ ((0, xK_F1), wrapSelect "rxvt-screen"),
+                ((0, xK_F2), wrapSelect "todo"),
+                ( (mod1Mask .|. shiftMask .|. controlMask, xK_x),
+                  xineramaDebug
+                ),
+                ((mod1Mask, xK_period), windows W.swapDown),
+                ((mod1Mask, xK_comma), windows W.swapUp),
+                ((mod1Mask, xK_e), windows (rotate False)),
+                ((mod1Mask, xK_o), windows (rotate True))
+              ]
+                ++ concatMap workspaceKeys myExtraWorkspaces
+            )
           $ withSB
             (statusBarProp "xmobar" (pure myXmobarPP))
             def
@@ -166,18 +180,6 @@ main = do
                     ],
                 workspaces = myWorkspaces
               }
-            `additionalKeys` ( [ ((0, xK_F1), wrapSelect "rxvt-screen"),
-                                 ((0, xK_F2), wrapSelect "todo"),
-                                 ( (mod1Mask .|. shiftMask .|. controlMask, xK_x),
-                                   xineramaDebug
-                                 ),
-                                 ((mod1Mask, xK_period), windows W.swapDown),
-                                 ((mod1Mask, xK_comma), windows W.swapUp),
-                                 ((mod1Mask, xK_e), windows (rotate False)),
-                                 ((mod1Mask, xK_o), windows (rotate True))
-                               ]
-                                 ++ concatMap workspaceKeys myExtraWorkspaces
-                             )
 
   xmonad config
 
