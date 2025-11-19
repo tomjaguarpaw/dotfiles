@@ -129,53 +129,55 @@ main = do
           }
 
   let config =
-        ewmhFullscreen $
-          ewmh $
-            withSB
-              (statusBarProp "xmobar" (pure myXmobarPP))
-              def
-                { manageHook = manageDocks <+> manageHook def,
-                  layoutHook = smartBorders $ avoidStruts $ myLayout,
-                  borderWidth = 2,
-                  -- The handleEventHook entry seems to be needed so that
-                  -- windows don't cover xmobar on the desktop that is active
-                  -- when xmonad is (re)started.  See
-                  --
-                  -- \* https://mail.haskell.org/pipermail/xmonad/2016-May/015103.html
-                  --
-                  -- \* https://bbs.archlinux.org/viewtopic.php?id=206890
-                  handleEventHook =
-                    mconcat
-                      [ docksEventHook,
-                        handleEventHook def
-                      ],
-                  workspaces = myWorkspaces
-                }
-              `additionalKeys` ( [ ((0, xK_F1), wrapSelect "rxvt-screen"),
-                                   ((0, xK_F2), wrapSelect "todo"),
-                                   ( (mod1Mask .|. shiftMask .|. controlMask, xK_x),
-                                     xineramaDebug
-                                   ),
-                                   ((mod1Mask, xK_period), windows W.swapDown),
-                                   ((mod1Mask, xK_comma), windows W.swapUp),
-                                   ((mod1Mask, xK_e), windows (rotate False)),
-                                   ((mod1Mask, xK_o), windows (rotate True))
-                                 ]
-                                   ++ concatMap workspaceKeys myExtraWorkspaces
-                               )
-              `removeKeys` [ (mod1Mask, xK_w),
-                             (mod1Mask, xK_q),
-                             (mod1Mask, xK_n),
-                             (mod1Mask, xK_p),
-                             (mod1Mask .|. shiftMask, xK_p),
-                             (mod1Mask .|. shiftMask, xK_q),
-                             (mod1Mask .|. shiftMask, xK_c),
-                             (mod1Mask .|. shiftMask, xK_Return),
-                             (mod1Mask, xK_j),
-                             (mod1Mask, xK_k),
-                             (mod1Mask .|. shiftMask, xK_j),
-                             (mod1Mask .|. shiftMask, xK_k)
-                           ]
+        ewmhFullscreen
+          $ ewmh
+          $ flip
+            removeKeys
+            [ (mod1Mask, xK_w),
+              (mod1Mask, xK_q),
+              (mod1Mask, xK_n),
+              (mod1Mask, xK_p),
+              (mod1Mask .|. shiftMask, xK_p),
+              (mod1Mask .|. shiftMask, xK_q),
+              (mod1Mask .|. shiftMask, xK_c),
+              (mod1Mask .|. shiftMask, xK_Return),
+              (mod1Mask, xK_j),
+              (mod1Mask, xK_k),
+              (mod1Mask .|. shiftMask, xK_j),
+              (mod1Mask .|. shiftMask, xK_k)
+            ]
+          $ withSB
+            (statusBarProp "xmobar" (pure myXmobarPP))
+            def
+              { manageHook = manageDocks <+> manageHook def,
+                layoutHook = smartBorders $ avoidStruts $ myLayout,
+                borderWidth = 2,
+                -- The handleEventHook entry seems to be needed so that
+                -- windows don't cover xmobar on the desktop that is active
+                -- when xmonad is (re)started.  See
+                --
+                -- \* https://mail.haskell.org/pipermail/xmonad/2016-May/015103.html
+                --
+                -- \* https://bbs.archlinux.org/viewtopic.php?id=206890
+                handleEventHook =
+                  mconcat
+                    [ docksEventHook,
+                      handleEventHook def
+                    ],
+                workspaces = myWorkspaces
+              }
+            `additionalKeys` ( [ ((0, xK_F1), wrapSelect "rxvt-screen"),
+                                 ((0, xK_F2), wrapSelect "todo"),
+                                 ( (mod1Mask .|. shiftMask .|. controlMask, xK_x),
+                                   xineramaDebug
+                                 ),
+                                 ((mod1Mask, xK_period), windows W.swapDown),
+                                 ((mod1Mask, xK_comma), windows W.swapUp),
+                                 ((mod1Mask, xK_e), windows (rotate False)),
+                                 ((mod1Mask, xK_o), windows (rotate True))
+                               ]
+                                 ++ concatMap workspaceKeys myExtraWorkspaces
+                             )
 
   xmonad config
 
