@@ -15,7 +15,7 @@ import System.IO (hPutStrLn)
 import Text.Read (readMaybe)
 import XMonad
 import XMonad.Hooks.EwmhDesktops (ewmh, ewmhFullscreen)
-import XMonad.Hooks.ManageDocks (avoidStruts, docksEventHook, manageDocks)
+import XMonad.Hooks.ManageDocks (avoidStruts, docks)
 import XMonad.Hooks.StatusBar
   ( defToggleStrutsKey,
     statusBarProp,
@@ -162,22 +162,15 @@ main = do
             )
           $ withSB
             (statusBarProp "xmobar" (pure myXmobarPP))
+          $ docks
           $ ( \rec ->
                 rec
-                  { manageHook = manageDocks <+> manageHook def,
+                  { manageHook = manageHook def,
                     layoutHook = smartBorders $ avoidStruts $ myLayout,
                     borderWidth = 2,
-                    -- The handleEventHook entry seems to be needed so that
-                    -- windows don't cover xmobar on the desktop that is active
-                    -- when xmonad is (re)started.  See
-                    --
-                    -- \* https://mail.haskell.org/pipermail/xmonad/2016-May/015103.html
-                    --
-                    -- \* https://bbs.archlinux.org/viewtopic.php?id=206890
                     handleEventHook =
                       mconcat
-                        [ docksEventHook,
-                          handleEventHook def
+                        [ handleEventHook def
                         ],
                     workspaces = myWorkspaces
                   }
