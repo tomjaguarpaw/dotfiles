@@ -168,9 +168,7 @@ main = do
                   { layoutHook = smartBorders $ avoidStruts $ myLayout,
                     borderWidth = 2,
                     handleEventHook =
-                      mconcat
-                        [ handleEventHook def
-                        ],
+                        handleEventHook def,
                     workspaces = myWorkspaces
                   }
             )
