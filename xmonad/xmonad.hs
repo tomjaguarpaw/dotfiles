@@ -177,8 +177,7 @@ main = do
                              (mod1Mask .|. shiftMask, xK_k)
                            ]
 
-  xmonad $
-    config
+  xmonad config
 
 -- This is W.reverseStack, but it's not exposed
 reverseStack :: W.Stack a -> W.Stack a
