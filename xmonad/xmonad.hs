@@ -160,8 +160,7 @@ main = do
               ]
                 ++ concatMap workspaceKeys myExtraWorkspaces
             )
-          $ withSB
-            (statusBarProp "xmobar" (pure myXmobarPP))
+          $ withSB (statusBarProp "xmobar" (pure myXmobarPP))
           $ docks
           $ ( \rec ->
                 rec
