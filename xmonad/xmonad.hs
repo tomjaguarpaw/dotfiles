@@ -14,6 +14,7 @@ import qualified Graphics.X11.Xinerama (compiledWithXinerama, getScreenInfo)
 import System.IO (hPutStrLn)
 import Text.Read (readMaybe)
 import XMonad
+import XMonad.Actions.CycleWS (nextScreen)
 import XMonad.Hooks.EwmhDesktops (ewmh, ewmhFullscreen)
 import XMonad.Hooks.ManageDocks (avoidStruts, docks)
 import XMonad.Hooks.StatusBar
@@ -156,7 +157,8 @@ main = do
                 ((mod1Mask, xK_period), windows W.swapDown),
                 ((mod1Mask, xK_comma), windows W.swapUp),
                 ((mod1Mask, xK_e), windows (rotate False)),
-                ((mod1Mask, xK_o), windows (rotate True))
+                ((mod1Mask, xK_o), windows (rotate True)),
+                ((mod1Mask, xK_quoteright), nextScreen)
               ]
                 ++ concatMap workspaceKeys myExtraWorkspaces
             )
