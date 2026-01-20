@@ -127,9 +127,6 @@
 ;; And only show in the current window
 (setq hl-global-line-sticky-flag nil)
 
-(use-package col-highlight
-  :straight t)
-
 ;; Drag the buffer up and down whilst keeping the point on the same
 ;; text with M-p/M-n
 (global-set-key "\M-p" (lambda () (interactive) (scroll-up 4)))
