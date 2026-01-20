@@ -104,7 +104,7 @@ touch $PROMPT_FILE
 horiz_bar() {
     DATE=$(echo -n $(date))
     LENGTH=${#DATE}
-    printf "_%.0s" {1.."$[$COLUMNS-$LENGTH]"}
+    printf "─%.0s" {1.."$[$COLUMNS-$LENGTH]"}
     echo -n "$DATE"
     echo
 }
