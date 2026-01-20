@@ -46,6 +46,10 @@
   :straight t
   )
 
+(use-package haskell-mode
+  :straight t
+  )
+
 (use-package dante
   :straight t
   :after haskell-mode
