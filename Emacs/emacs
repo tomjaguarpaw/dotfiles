@@ -13,7 +13,7 @@
 	     :straight t)
 (use-package lsp-mode
 	     :straight t
-	     :hook (haskell-mode . lsp)
+	     ;; :hook (haskell-mode . lsp)
 	     :commands lsp)
 (use-package lsp-ui
 	     :straight t
@@ -36,10 +36,16 @@
 
 (add-to-list 'auto-mode-alist '("\\.ks\\'" . lisp-mode))
 
+;; Needed to make Shift Up/Down work on SSH over iTerm2
+;; For some reason not running on startup (or being overridden)
+(define-key input-decode-map "\e[1;2A" [S-up])
+(define-key input-decode-map "\e[1;2B" [S-down])
+
 (add-hook 'haskell-mode-hook 'whitespace-mode)
 (add-hook 'lisp-mode-hook 'whitespace-mode)
 (add-hook 'lisp-interaction-mode-hook 'whitespace-mode)
 (add-hook 'lisp-mode-hook (lambda () (setq indent-tabs-mode nil)))
+(setq indent-tabs-mode nil)
 (add-hook 'makefile-gmake-mode-hook 'whitespace-mode)
 
 (use-package attrap
@@ -51,10 +57,10 @@
   :after haskell-mode
   :commands 'dante-mode
   :init
-  (add-hook 'haskell-mode-hook 'flycheck-mode)
+  ;; (add-hook 'haskell-mode-hook 'flycheck-mode)
   ;; OR:
   ;; (add-hook 'haskell-mode-hook 'flymake-mode)
-  ;; (add-hook 'haskell-mode-hook 'dante-mode)
+  (add-hook 'haskell-mode-hook 'dante-mode)
   ;; This has to be run after flycheck is set up (in this case
   ;; implicitly, via dante).  If one uses the suggestion of the dante
   ;; README (i.e. to put it in the dante-mode-hook then it is run
@@ -84,6 +90,7 @@
 (use-package helm
   :straight t
   :config
+  ;; Maybe I should comment this out? helm-config no longer exists?
   (helm-mode 1)
   (require 'helm-config)
   )

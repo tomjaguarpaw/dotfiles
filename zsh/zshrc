@@ -248,3 +248,9 @@ if [ -e $DIFF_SO_FANCY ]; then
   # configuration.
   alias git="sh $DIFF_SO_FANCY"
 fi
+unset DIFF_SO_FANCY
+
+export GROQ_INTERNAL_DEBUG=Y
+. $GROQ_CONFIG/zsh/bake-completion.zsh
+
+. ~/Repos/fzf-git.sh/fzf-git.sh

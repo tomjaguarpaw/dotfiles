@@ -1,6 +1,6 @@
 DIFF_SO_FANCY=$HOME/diff-so-fancy/diff-so-fancy
 
-if [ -x $DIFF_SO_FANCY ]; then
+if [ -x "$DIFF_SO_FANCY" ]; then
   git -c diff-so-fancy.markEmptyLines=false \
       -c diff-so-fancy.stripLeadingSymbols=false \
       -c core.pager="$DIFF_SO_FANCY | less --tabs=4 -RFXS" \
