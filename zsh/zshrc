@@ -176,7 +176,7 @@ function make_prompt() {
   git_rebasing
   git_describe
   staging_area
-  git_log
+#  git_log
 }
 
 generate_prompt() {
