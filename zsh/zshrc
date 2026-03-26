@@ -145,9 +145,12 @@ function git_diff() {
 }
 
 function git_describe() {
-  DESCRIPTION=$($HOME/.cabal/bin/prawn $PWD)
-  if [[ "x$DESCRIPTION" != x ]]; then
-    echo -n " $DESCRIPTION"
+  PRAWN=$HOME/.cabal/bin/prawn
+  if [ -x $PRAWN ]; then
+    DESCRIPTION=$($PRAWN $PWD)
+    if [[ "x$DESCRIPTION" != x ]]; then
+      echo -n " $DESCRIPTION"
+    fi
   fi
 }
 
