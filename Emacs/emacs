@@ -174,3 +174,5 @@
 (setq ring-bell-function 'ignore)
 
 (add-hook 'after-init-hook 'global-company-mode)
+
+(setq backup-directory-alist '(("." . "/home/tom/MyEmacsBackups")))
