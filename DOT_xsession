@@ -10,7 +10,7 @@ DESKTOP_IMAGE=~/Images/circuitbreaker.jpg
 python ~/Config/dotfiles/wrapselect.py rxvt-screen &
 python ~/Config/dotfiles/wrapselect.py rxvt-screen &
 
-setxkbmap dvorak
+setxkbmap -variant dvorak us
 
 if [ -r "$DESKTOP_IMAGE" ]; then
 	nice -n 19 feh --bg-scale $DESKTOP_IMAGE
