@@ -10,5 +10,5 @@ SIZE=10
 # It seems urxvt has problems working out the correct unicode fallback if we don't specify it
 #exec $RXVT -fn "xft:inconsolata:size=$SIZE:hintstyle=hintslight,xft:unifont" -bg midnightblue -fg yellow $@
 # xterm needs "xterm*eightBitInput: false" in order for Alt-F and Alt-B to go forwards and backwards
-exec $RXVT -xrm "xterm*eightBitInput: false" -fn "xft:inconsolata:size=$SIZE:hintstyle=hintslight,xft:unifont" -bg black -fg white "$@"
+exec $RXVT -xrm "xterm*eightBitInput: false" -fa 'Dejavu Mono' -fs $SIZE -bg black -fg white "$@"
 #exec stterm -f "inconsolata:size=$SIZE:hintstyle=hintslight,xft:unifont" "$@"
