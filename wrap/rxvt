@@ -5,7 +5,7 @@
 RXVT=xterm
 
 
-SIZE=12
+SIZE=10
 
 # It seems urxvt has problems working out the correct unicode fallback if we don't specify it
 #exec $RXVT -fn "xft:inconsolata:size=$SIZE:hintstyle=hintslight,xft:unifont" -bg midnightblue -fg yellow $@
