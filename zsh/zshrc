@@ -251,3 +251,5 @@ if [ -e $DIFF_SO_FANCY ]; then
   # configuration.
   alias git="sh $DIFF_SO_FANCY"
 fi
+
+alias e='emacsclient --no-wait'
